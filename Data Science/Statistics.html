@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Statistics Mastery Roadmap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c2461 0%, #1e3799 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .roadmap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .phase {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .phase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+        
+        .phase-header {
+            background: linear-gradient(to right, #4a69bd, #6a89cc);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .phase-header h2 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .phase-header i {
+            font-size: 1.5rem;
+        }
+        
+        .phase-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+        }
+        
+        .phase-content.expanded {
+            padding: 25px;
+            max-height: 2000px;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        
+        .topic-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 5px solid #4a69bd;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-left-color: #0c2461;
+        }
+        
+        .topic-card h3 {
+            color: #0c2461;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .topic-card ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .topic-card li {
+            margin-bottom: 5px;
+            position: relative;
+        }
+        
+        .topic-card li:before {
+            content: "•";
+            color: #4a69bd;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+        
+        .resources {
+            background: #e9f5ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .resources strong {
+            color: #0c2461;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            flex-grow: 1;
+            margin-right: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #4a69bd, #6a89cc);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 1s ease;
+        }
+        
+        .progress-text {
+            font-weight: bold;
+            color: #0c2461;
+            min-width: 100px;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            background: #4a69bd;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            background: #0c2461;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-expand-all {
+            background: #38ada9;
+        }
+        
+        .btn-collapse-all {
+            background: #e55039;
+        }
+        
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .phase-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .controls {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-chart-line"></i> Advanced Statistics Mastery Roadmap</h1>
+            <p class="subtitle">A comprehensive, step-by-step guide to mastering advanced statistics with in-depth coverage of every essential topic</p>
+        </header>
+        
+        <div class="controls">
+            <button class="btn btn-expand-all" id="expandAll">
+                <i class="fas fa-expand-alt"></i> Expand All Phases
+            </button>
+            <button class="btn btn-collapse-all" id="collapseAll">
+                <i class="fas fa-compress-alt"></i> Collapse All Phases
+            </button>
+        </div>
+        
+        <div class="roadmap-container">
+            <!-- Phase 1 -->
+            <div class="phase" id="phase1">
+                <div class="phase-header">
+                    <h2><i class="fas fa-solid fa-award"></i> Phase 1: Foundational Statistics</h2>
+                    <span class="progress-text">Duration: 4-6 weeks</span>
+                </div>
+                <div class="phase-content">
+                    <div class="topics-grid">
+                        <div class="topic-card">
+                            <h3><i class="fas fa-chart-bar"></i> Descriptive Statistics</h3>
+                            <ul>
+                                <li>Measures of central tendency (mean, median, mode)</li>
+                                <li>Measures of dispersion (variance, standard deviation, range, IQR)</li>
+                                <li>Skewness and kurtosis</li>
+                                <li>Data visualization techniques</li>
+                                <li>Summary statistics for different data types</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                "Statistics" by David Freedman, Khan Academy Statistics
+                            </div>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <h3><i class="fas fa-dice"></i> Probability Theory</h3>
+                            <ul>
+                                <li>Basic probability rules and axioms</li>
+                                <li>Conditional probability and Bayes' theorem</li>
+                                <li>Random variables and probability distributions</li>
+                                <li>Expectation, variance, and moments</li>
+                                <li>Common discrete and continuous distributions</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                "Introduction to Probability" by Blitzstein & Hwang
+                            </div>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <h3><i class="fas fa-project-diagram"></i> Statistical Inference</h3>
+                            <ul>
+                                <li>Sampling distributions</li>
+                                <li>Central Limit Theorem</li>
+                                <li>Point estimation and properties of estimators</li>
+                                <li>Confidence intervals</li>
+                                <li>Hypothesis testing fundamentals</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                "All of Statistics" by Larry Wasserman
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                        <div class="progress-text">Foundation Complete</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 2 -->
+            <div class="phase" id="phase2">
+                <div class="phase-header">
+                    <h2><i class="fas fa-calculator"></i> Phase 2: Intermediate Statistical Methods</h2>
+                    <span class="progress-text">Duration: 6-8 weeks</span>
+                </div>
+                <div class="phase-content">
+                    <div class="topics-grid">
+                        <div class="topic-card">
+                            <h3><i class="fas fa-chart-area"></i> Regression Analysis</h3>
+                            <ul>
+                                <li>Simple and multiple linear regression</li>
+                                <li>Assumptions and diagnostics</li>
+                                <li>Model selection techniques</li>
+                                <li>Multicollinearity and remedies</li>
+                                <li>Interpretation of coefficients</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                "Applied Linear Statistical Models" by Kutner et al.
+                            </div>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <h3><i class="fas fa-balance-scale"></i> Analysis of Variance</h3>
+                            <ul>
+                                <li>One-way and two-way ANOVA</li>
+                                <li>Fixed vs. random effects models</li>
+                                <li>Post-hoc testing procedures</li>
+                                <li>Assumptions and diagnostics</li>
+                                <li>ANCOVA and MANOVA</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                "Design and Analysis of Experiments" by Montgomery
+                            </div>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <h3><i class="fas fa-search"></i> Nonparametric Methods</h3>
+                            <ul>
+                                <li>Rank-based tests (Mann-Whitney, Kruskal-Wallis)</li>
+                                <li>Goodness-of-fit tests (Kolmogorov-Smirnov)</li>
+                                <li>Bootstrap and permutation tests</li>
+                                <li>Spearman and Kendall correlation</li>
+                                <li>When to use nonparametric approaches</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                "Nonparametric Statistical Methods" by Hollander & Wolfe
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                        <div class="progress-text">Core Methods Mastered</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 3 -->
+            <div class="phase" id="phase3">
+                <div class="phase-header">
+                    <h2><i class="fas fa-brain"></i> Phase 3: Advanced Modeling Techniques</h2>
+                    <span class="progress-text">Duration: 8-12 weeks</span>
+                </div>
+                <div class="phase-content">
+                    <div class="topics-grid">
+                        <div class="topic-card">
+                            <h3><i class="fas fa-sitemap"></i> Generalized Linear Models</h3>
+                            <ul>
+                                <li>Exponential family of distributions</li>
+                                <li>Logistic regression for binary outcomes</li>
+                                <li>Poisson regression for count data</li>
+                                <li>Link functions and their interpretation</li>
+                                <li>Model diagnostics for GLMs</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                "Generalized Linear Models" by McCullagh & Nelder
+                            </div>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <h3><i class="fas fa-chart-pie"></i> Multivariate Analysis</h3>
+                            <ul>
+                                <li>Principal Component Analysis (PCA)</li>
+                                <li>Factor Analysis</li>
+                                <li>Cluster Analysis</li>
+                                <li>Multidimensional Scaling</li>
+                                <li>Canonical Correlation Analysis</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                "Multivariate Data Analysis" by Hair et al.
+                            </div>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <h3><i class="fas fa-clock"></i> Time Series Analysis</h3>
+                            <ul>
+                                <li>Stationarity and differencing</li>
+                                <li>ARIMA and SARIMA models</li>
+                                <li>Exponential smoothing methods</li>
+                                <li>Forecasting evaluation metrics</li>
+                                <li>Seasonal decomposition</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                "Time Series Analysis" by Box, Jenkins & Reinsel
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                        <div class="progress-text">Advanced Models Covered</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 4 -->
+            <div class="phase" id="phase4">
+                <div class="phase-header">
+                    <h2><i class="fas fa-robot"></i> Phase 4: Modern Statistical Learning</h2>
+                    <span class="progress-text">Duration: 10-14 weeks</span>
+                </div>
+                <div class="phase-content">
+                    <div class="topics-grid">
+                        <div class="topic-card">
+                            <h3><i class="fas fa-network-wired"></i> Machine Learning Fundamentals</h3>
+                            <ul>
+                                <li>Bias-variance tradeoff</li>
+                                <li>Cross-validation techniques</li>
+                                <li>Regularization methods (Ridge, Lasso, Elastic Net)</li>
+                                <li>Tree-based methods (Decision Trees, Random Forests)</li>
+                                <li>Model evaluation metrics</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                "Elements of Statistical Learning" by Hastie, Tibshirani & Friedman
+                            </div>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <h3><i class="fas fa-project-diagram"></i> Bayesian Statistics</h3>
+                            <ul>
+                                <li>Bayesian inference vs. frequentist</li>
+                                <li>Prior and posterior distributions</li>
+                                <li>Markov Chain Monte Carlo (MCMC)</li>
+                                <li>Hierarchical Bayesian models</li>
+                                <li>Bayesian model comparison</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                "Bayesian Data Analysis" by Gelman et al.
+                            </div>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <h3><i class="fas fa-chart-line"></i> Advanced Topics</h3>
+                            <ul>
+                                <li>Survival Analysis and Cox Regression</li>
+                                <li>Longitudinal Data Analysis</li>
+                                <li>Spatial Statistics</li>
+                                <li>Causal Inference Methods</li>
+                                <li>High-Dimensional Statistics</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                "Statistical Inference" by Casella & Berger
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                        <div class="progress-text">Modern Methods Covered</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 5 -->
+            <div class="phase" id="phase5">
+                <div class="phase-header">
+                    <h2><i class="fas fa-laptop-code"></i> Phase 5: Applied Implementation</h2>
+                    <span class="progress-text">Duration: Ongoing</span>
+                </div>
+                <div class="phase-content">
+                    <div class="topics-grid">
+                        <div class="topic-card">
+                            <h3><i class="fas fa-code"></i> Statistical Programming</h3>
+                            <ul>
+                                <li>R for statistical computing</li>
+                                <li>Python with pandas, numpy, scipy</li>
+                                <li>Data visualization with ggplot2 and matplotlib</li>
+                                <li>Reproducible research with RMarkdown/Jupyter</li>
+                                <li>Statistical software (SPSS, SAS, Stata)</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                "R for Data Science" by Wickham & Grolemund
+                            </div>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <h3><i class="fas fa-database"></i> Real-World Applications</h3>
+                            <ul>
+                                <li>Experimental design and A/B testing</li>
+                                <li>Statistical consulting principles</li>
+                                <li>Communicating statistical results</li>
+                                <li>Ethical considerations in statistics</li>
+                                <li>Case studies across industries</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                "Naked Statistics" by Charles Wheelan
+                            </div>
+                        </div>
+                        
+                        <div class="topic-card">
+                            <h3><i class="fas fa-graduation-cap"></i> Continued Learning</h3>
+                            <ul>
+                                <li>Specialized journals and publications</li>
+                                <li>Online courses and certifications</li>
+                                <li>Statistical conferences and workshops</li>
+                                <li>Research participation opportunities</li>
+                                <li>Teaching and mentorship</li>
+                            </ul>
+                            <div class="resources">
+                                <strong>Key Resources:</strong> 
+                                Journal of the American Statistical Association
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                        <div class="progress-text">Implementation Focus</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Advanced Statistics Roadmap • Complete coverage of all essential topics • Designed for systematic mastery</p>
+            <p>Estimated total timeline: 28-44 weeks for comprehensive understanding</p>
+        </footer>
+    </div>
+
+    <script>
+        // Expand/collapse functionality for phase sections
+        document.querySelectorAll('.phase-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                content.classList.toggle('expanded');
+                
+                // Animate progress bars when expanded
+                if (content.classList.contains('expanded')) {
+                    const progressFill = content.querySelector('.progress-fill');
+                    if (progressFill) {
+                        // Reset and animate width
+                        const width = progressFill.style.width;
+                        progressFill.style.width = '0%';
+                        setTimeout(() => {
+                            progressFill.style.width = width;
+                        }, 10);
+                    }
+                }
+            });
+        });
+        
+        // Expand all phases
+        document.getElementById('expandAll').addEventListener('click', function() {
+            document.querySelectorAll('.phase-content').forEach(content => {
+                content.classList.add('expanded');
+                
+                // Animate progress bars
+                const progressFill = content.querySelector('.progress-fill');
+                if (progressFill) {
+                    const width = progressFill.style.width;
+                    progressFill.style.width = '0%';
+                    setTimeout(() => {
+                        progressFill.style.width = width;
+                    }, 10);
+                }
+            });
+        });
+        
+        // Collapse all phases
+        document.getElementById('collapseAll').addEventListener('click', function() {
+            document.querySelectorAll('.phase-content').forEach(content => {
+                content.classList.remove('expanded');
+            });
+        });
+        
+        // Initialize with first phase expanded
+        document.querySelector('.phase-content').classList.add('expanded');
+    </script>
+</body>
+</html>
