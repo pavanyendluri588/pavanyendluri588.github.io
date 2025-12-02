@@ -3,646 +3,2402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Statistics Mastery Roadmap</title>
+    <title>Complete Statistics & Data Science Mastery Roadmap</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
+        :root {
+            --phase1: #2E7D32;
+            --phase2: #1565C0;
+            --phase3: #6A1B9A;
+            --phase4: #F57C00;
+            --phase5: #C62828;
+            --phase6: #5D4037;
+            --phase7: #00695C;
+            --phase8: #37474F;
+            --phase9: #AD1457;
+            --completed: #4CAF50;
+            --in-progress: #2196F3;
+            --pending: #FF9800;
+            --future: #BDBDBD;
+            --primary: #0c2461;
+            --statistics-blue: #4a69bd;
+            --datascience-orange: #FF5722;
+            --ml-purple: #9C27B0;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --card-hover-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #0c2461 0%, #1e3799 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
             color: #333;
             line-height: 1.6;
-            padding: 20px;
             min-height: 100vh;
+            padding: 0;
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 0;
+            min-height: 100vh;
         }
         
-        header {
-            text-align: center;
-            margin-bottom: 30px;
+        /* Sidebar Navigation */
+        .sidebar {
+            background: linear-gradient(180deg, var(--primary), #1e3799);
             color: white;
-            padding: 20px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px 20px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.15);
+            z-index: 100;
         }
         
-        h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        .sidebar-header {
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 25px;
         }
         
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .roadmap-container {
+        .sidebar h2 {
+            font-size: 1.6rem;
             display: flex;
-            flex-direction: column;
-            gap: 25px;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
         }
         
-        .phase {
-            background: white;
-            border-radius: 12px;
+        .sidebar h2 i {
+            color: #FFD700;
+            font-size: 1.8rem;
+        }
+        
+        .sidebar-tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+        
+        .phases-nav {
+            list-style: none;
+        }
+        
+        .phase-link {
+            margin-bottom: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .phase:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-        }
-        
-        .phase-header {
-            background: linear-gradient(to right, #4a69bd, #6a89cc);
+        .phase-link a {
+            display: flex;
+            align-items: center;
+            padding: 16px 18px;
             color: white;
-            padding: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            border-left: 5px solid transparent;
+            transition: all 0.3s;
+            background-color: rgba(255,255,255,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .phase-link a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s;
+        }
+        
+        .phase-link a:hover::before {
+            left: 100%;
+        }
+        
+        .phase-link a:hover {
+            background-color: rgba(255,255,255,0.1);
+            border-left-color: white;
+            padding-left: 22px;
+            transform: translateX(5px);
+        }
+        
+        .phase-link.active a {
+            background-color: rgba(255,255,255,0.15);
+            border-left-color: #FFD700;
+            font-weight: bold;
+            box-shadow: inset 3px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .phase-progress-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 12px;
+            transition: all 0.3s;
+        }
+        
+        .phase-complete .phase-progress-indicator {
+            background-color: var(--completed);
+            box-shadow: 0 0 8px var(--completed);
+        }
+        
+        .phase-in-progress .phase-progress-indicator {
+            background-color: var(--in-progress);
+            box-shadow: 0 0 8px var(--in-progress);
+            animation: pulse 2s infinite;
+        }
+        
+        .phase-pending .phase-progress-indicator {
+            background-color: var(--pending);
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        
+        .progress-container {
+            margin-top: 40px;
+            background-color: rgba(255,255,255,0.08);
+            padding: 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .progress-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            cursor: pointer;
+            margin-bottom: 15px;
         }
         
-        .phase-header h2 {
-            font-size: 1.8rem;
+        .progress-text {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        
+        .progress-percent {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: rgba(255,255,255,0.15);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--completed), #8BC34A);
+            width: 20%;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-image: linear-gradient(
+                -45deg, 
+                rgba(255, 255, 255, 0.2) 25%, 
+                transparent 25%, 
+                transparent 50%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                rgba(255, 255, 255, 0.2) 75%, 
+                transparent 75%, 
+                transparent
+            );
+            z-index: 1;
+            background-size: 50px 50px;
+            animation: move 2s linear infinite;
+        }
+        
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+        
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+        
+        .sidebar-footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .sidebar-tip {
+            background-color: rgba(255,215,0,0.1);
+            border-left: 3px solid #FFD700;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 35px 45px;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), #4a69bd);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            opacity: 0.95;
+            font-size: 1.2rem;
+            max-width: 900px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 25px;
+            background-color: rgba(255,255,255,0.12);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255,255,255,0.18);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            text-align: center;
+        }
+        
+        /* Phase Content */
+        .phase-content {
+            display: none;
+        }
+        
+        .phase-content.active {
+            display: block;
+            animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .phase-title {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 4px solid;
+            position: relative;
+        }
+        
+        .phase-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, currentColor, transparent);
+        }
+        
+        .phase-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .phase-title-text h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .phase-title-text p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 800px;
+        }
+        
+        /* Topics Grid */
+        .topics-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .topic-card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            border-top: 8px solid;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, currentColor, transparent);
+            opacity: 0.3;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--card-hover-shadow);
+        }
+        
+        .topic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .topic-number {
+            background: linear-gradient(135deg, #FFF3E0, #FFECB3);
+            color: var(--primary);
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .topic-status {
+            font-size: 0.8rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-foundational {
+            background-color: #E3F2FD;
+            color: #1565C0;
+        }
+        
+        .status-intermediate {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+        }
+        
+        .status-advanced {
+            background-color: #F3E5F5;
+            color: #7B1FA2;
+        }
+        
+        .status-ml {
+            background-color: #FFEBEE;
+            color: #C62828;
+        }
+        
+        .status-applied {
+            background-color: #FFF3E0;
+            color: #EF6C00;
+        }
+        
+        .status-completed {
+            background-color: #E8F5E9;
+            color: var(--completed);
+        }
+        
+        .status-in-progress {
+            background-color: #E3F2FD;
+            color: var(--in-progress);
+        }
+        
+        .topic-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+            line-height: 1.4;
+            flex-grow: 0;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        .phase-header i {
-            font-size: 1.5rem;
-        }
-        
-        .phase-content {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease, padding 0.5s ease;
-        }
-        
-        .phase-content.expanded {
-            padding: 25px;
-            max-height: 2000px;
-        }
-        
-        .topics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 20px;
-        }
-        
-        .topic-card {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            border-left: 5px solid #4a69bd;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .topic-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            border-left-color: #0c2461;
-        }
-        
-        .topic-card h3 {
-            color: #0c2461;
-            margin-bottom: 10px;
-            font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .topic-card ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .topic-card li {
-            margin-bottom: 5px;
-            position: relative;
-        }
-        
-        .topic-card li:before {
-            content: "•";
-            color: #4a69bd;
-            font-weight: bold;
-            position: absolute;
-            left: -15px;
-        }
-        
-        .resources {
-            background: #e9f5ff;
-            padding: 15px;
-            border-radius: 8px;
+        .subtopics {
+            list-style: none;
             margin-top: 15px;
-            font-size: 0.9rem;
-        }
-        
-        .resources strong {
-            color: #0c2461;
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        .progress-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-        
-        .progress-bar {
-            height: 10px;
-            background: #e0e0e0;
-            border-radius: 5px;
+            margin-bottom: 25px;
             flex-grow: 1;
-            margin-right: 20px;
-            overflow: hidden;
         }
         
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(to right, #4a69bd, #6a89cc);
-            border-radius: 5px;
-            width: 0%;
-            transition: width 1s ease;
-        }
-        
-        .progress-text {
-            font-weight: bold;
-            color: #0c2461;
-            min-width: 100px;
-        }
-        
-        .controls {
+        .subtopics li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
+            align-items: flex-start;
+            transition: all 0.3s;
+        }
+        
+        .subtopics li:hover {
+            background-color: #f9f9f9;
+            padding-left: 10px;
+            border-radius: 5px;
+        }
+        
+        .subtopics li:last-child {
+            border-bottom: none;
+        }
+        
+        .subtopics li i {
+            margin-right: 12px;
+            font-size: 0.9rem;
+            min-width: 18px;
+            margin-top: 3px;
+        }
+        
+        .topic-footer {
+            margin-top: auto;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        
+        .topic-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
             margin-bottom: 20px;
         }
         
-        .btn {
-            padding: 12px 25px;
-            background: #4a69bd;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            display: flex;
+        .topic-link {
+            text-decoration: none;
+            background-color: #E3F2FD;
+            color: var(--primary);
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
         }
         
-        .btn:hover {
-            background: #0c2461;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn-expand-all {
-            background: #38ada9;
-        }
-        
-        .btn-collapse-all {
-            background: #e55039;
-        }
-        
-        footer {
-            text-align: center;
+        .topic-link:hover {
+            background-color: var(--primary);
             color: white;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            font-size: 0.9rem;
-            opacity: 0.8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(12, 36, 97, 0.2);
+        }
+        
+        .track-progress {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .checkbox-container input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+        
+        .completed-count {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--completed);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        
+        .badge-statistics {
+            background-color: var(--statistics-blue);
+            color: white;
+        }
+        
+        .badge-ml {
+            background-color: var(--ml-purple);
+            color: white;
+        }
+        
+        .badge-datascience {
+            background-color: var(--datascience-orange);
+            color: white;
+        }
+        
+        .badge-bayesian {
+            background-color: #009688;
+            color: white;
+        }
+        
+        .badge-programming {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .badge-essential {
+            background-color: #FF9800;
+            color: white;
+        }
+        
+        /* Phase-specific colors */
+        .phase1 .phase-title { border-color: var(--phase1); }
+        .phase1 .phase-icon { background: linear-gradient(135deg, var(--phase1), #4CAF50); }
+        .phase1 .topic-card { border-top-color: var(--phase1); }
+        
+        .phase2 .phase-title { border-color: var(--phase2); }
+        .phase2 .phase-icon { background: linear-gradient(135deg, var(--phase2), #42A5F5); }
+        .phase2 .topic-card { border-top-color: var(--phase2); }
+        
+        .phase3 .phase-title { border-color: var(--phase3); }
+        .phase3 .phase-icon { background: linear-gradient(135deg, var(--phase3), #AB47BC); }
+        .phase3 .topic-card { border-top-color: var(--phase3); }
+        
+        .phase4 .phase-title { border-color: var(--phase4); }
+        .phase4 .phase-icon { background: linear-gradient(135deg, var(--phase4), #FFB74D); }
+        .phase4 .topic-card { border-top-color: var(--phase4); }
+        
+        .phase5 .phase-title { border-color: var(--phase5); }
+        .phase5 .phase-icon { background: linear-gradient(135deg, var(--phase5), #EF5350); }
+        .phase5 .topic-card { border-top-color: var(--phase5); }
+        
+        .phase6 .phase-title { border-color: var(--phase6); }
+        .phase6 .phase-icon { background: linear-gradient(135deg, var(--phase6), #8D6E63); }
+        .phase6 .topic-card { border-top-color: var(--phase6); }
+        
+        .phase7 .phase-title { border-color: var(--phase7); }
+        .phase7 .phase-icon { background: linear-gradient(135deg, var(--phase7), #26A69A); }
+        .phase7 .topic-card { border-top-color: var(--phase7); }
+        
+        .phase8 .phase-title { border-color: var(--phase8); }
+        .phase8 .phase-icon { background: linear-gradient(135deg, var(--phase8), #546E7A); }
+        .phase8 .topic-card { border-top-color: var(--phase8); }
+        
+        .phase9 .phase-title { border-color: var(--phase9); }
+        .phase9 .phase-icon { background: linear-gradient(135deg, var(--phase9), #EC407A); }
+        .phase9 .topic-card { border-top-color: var(--phase9); }
+        
+        /* Final Outcome Section */
+        .final-outcome {
+            background: linear-gradient(135deg, var(--primary), #1e3799);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            margin-top: 60px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .final-outcome::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="white" opacity="0.03" d="M0,0 L100,0 L100,100 Z"/></svg>');
+            background-size: cover;
+        }
+        
+        .final-outcome h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+        
+        .final-outcome h2 i {
+            color: #FFD700;
+            font-size: 2.5rem;
+        }
+        
+        .final-outcome p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 900px;
+            position: relative;
+        }
+        
+        .outcome-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+            position: relative;
+        }
+        
+        .outcome-card {
+            background-color: rgba(255,255,255,0.12);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+        
+        .outcome-card:hover {
+            transform: translateY(-8px);
+            background-color: rgba(255,255,255,0.18);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        }
+        
+        .outcome-card h3 {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .outcome-card ul {
+            list-style: none;
+            padding-left: 5px;
+        }
+        
+        .outcome-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .outcome-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .outcome-card li:last-child {
+            border-bottom: none;
+        }
+        
+        .start-button {
+            text-align: center;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        #start-roadmap {
+            background: linear-gradient(135deg, #FFD700, #FFC107);
+            color: var(--primary);
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.4s;
+            box-shadow: 0 10px 20px rgba(12, 36, 97, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        #start-roadmap:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(12, 36, 97, 0.4);
+        }
+        
+        #start-roadmap:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 280px 1fr;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+            }
+            
+            .sidebar {
+                height: auto;
+                position: static;
+                max-height: 400px;
+            }
+            
+            .main-content {
+                max-height: none;
+                padding: 30px;
+            }
         }
         
         @media (max-width: 768px) {
-            .topics-grid {
+            .topics-container {
                 grid-template-columns: 1fr;
             }
             
-            h1 {
-                font-size: 2rem;
+            .main-content {
+                padding: 20px;
             }
             
-            .phase-header h2 {
-                font-size: 1.5rem;
+            .header {
+                padding: 30px 25px;
             }
             
-            .controls {
-                flex-wrap: wrap;
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .phase-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .phase-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+            
+            .phase-title-text h2 {
+                font-size: 1.8rem;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Topic Modal */
+        .topic-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .topic-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #666;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .modal-close:hover {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        /* Floating Action Buttons */
+        .fab-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+        
+        .fab {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #4a69bd);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 20px rgba(12, 36, 97, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 25px rgba(12, 36, 97, 0.5);
+        }
+        
+        .fab-tooltip {
+            position: absolute;
+            right: 70px;
+            background: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .fab:hover .fab-tooltip {
+            opacity: 1;
+        }
+        
+        /* Resource Links */
+        .resource-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .resource-btn {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #4a69bd, #6a89cc);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .resource-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(74, 105, 189, 0.3);
+        }
+        
+        /* Print Styles */
+        @media print {
+            .sidebar, .fab-container, .topic-links, #start-roadmap {
+                display: none !important;
+            }
+            
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .topic-card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1><i class="fas fa-chart-line"></i> Advanced Statistics Mastery Roadmap</h1>
-            <p class="subtitle">A comprehensive, step-by-step guide to mastering advanced statistics with in-depth coverage of every essential topic</p>
-        </header>
-        
-        <div class="controls">
-            <button class="btn btn-expand-all" id="expandAll">
-                <i class="fas fa-expand-alt"></i> Expand All Phases
-            </button>
-            <button class="btn btn-collapse-all" id="collapseAll">
-                <i class="fas fa-compress-alt"></i> Collapse All Phases
-            </button>
-        </div>
-        
-        <div class="roadmap-container">
-            <!-- Phase 1 -->
-            <div class="phase" id="phase1">
-                <div class="phase-header">
-                    <h2><i class="fas fa-solid fa-award"></i> Phase 1: Foundational Statistics</h2>
-                    <span class="progress-text">Duration: 4-6 weeks</span>
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-chart-line"></i> Statistics & Data Science Mastery</h2>
+                <p class="sidebar-tagline">From fundamentals to expert level in 9 comprehensive phases</p>
+            </div>
+            
+            <ul class="phases-nav">
+                <li class="phase-link active phase-complete" data-phase="phase1">
+                    <a href="#phase1">
+                        <span class="phase-progress-indicator"></span>
+                        Phase 1: Foundational Statistics
+                    </a>
+                </li>
+                <li class="phase-link phase-in-progress" data-phase="phase2">
+                    <a href="#phase2">
+                        <span class="phase-progress-indicator"></span>
+                        Phase 2: Intermediate Statistical Methods
+                    </a>
+                </li>
+                <li class="phase-link phase-pending" data-phase="phase3">
+                    <a href="#phase3">
+                        <span class="phase-progress-indicator"></span>
+                        Phase 3: Advanced Modeling Techniques
+                    </a>
+                </li>
+                <li class="phase-link phase-pending" data-phase="phase4">
+                    <a href="#phase4">
+                        <span class="phase-progress-indicator"></span>
+                        Phase 4: Modern Statistical Learning
+                    </a>
+                </li>
+                <li class="phase-link phase-pending" data-phase="phase5">
+                    <a href="#phase5">
+                        <span class="phase-progress-indicator"></span>
+                        Phase 5: Applied Implementation
+                    </a>
+                </li>
+                <li class="phase-link phase-pending" data-phase="phase6">
+                    <a href="#phase6">
+                        <span class="phase-progress-indicator"></span>
+                        Phase 6: Specialized Applications
+                    </a>
+                </li>
+                <li class="phase-link phase-pending" data-phase="phase7">
+                    <a href="#phase7">
+                        <span class="phase-progress-indicator"></span>
+                        Phase 7: Advanced Machine Learning
+                    </a>
+                </li>
+                <li class="phase-link phase-pending" data-phase="phase8">
+                    <a href="#phase8">
+                        <span class="phase-progress-indicator"></span>
+                        Phase 8: Production & Deployment
+                    </a>
+                </li>
+                <li class="phase-link phase-pending" data-phase="phase9">
+                    <a href="#phase9">
+                        <span class="phase-progress-indicator"></span>
+                        Phase 9: Projects & Career
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="progress-container">
+                <div class="progress-header">
+                    <div class="progress-text">Mastery Progress</div>
+                    <div class="progress-percent" id="progress-percent">20%</div>
                 </div>
-                <div class="phase-content">
-                    <div class="topics-grid">
-                        <div class="topic-card">
-                            <h3><i class="fas fa-chart-bar"></i> Descriptive Statistics</h3>
-                            <ul>
-                                <li>Measures of central tendency (mean, median, mode)</li>
-                                <li>Measures of dispersion (variance, standard deviation, range, IQR)</li>
-                                <li>Skewness and kurtosis</li>
-                                <li>Data visualization techniques</li>
-                                <li>Summary statistics for different data types</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                "Statistics" by David Freedman, Khan Academy Statistics
-                            </div>
-                        </div>
-                        
-                        <div class="topic-card">
-                            <h3><i class="fas fa-dice"></i> Probability Theory</h3>
-                            <ul>
-                                <li>Basic probability rules and axioms</li>
-                                <li>Conditional probability and Bayes' theorem</li>
-                                <li>Random variables and probability distributions</li>
-                                <li>Expectation, variance, and moments</li>
-                                <li>Common discrete and continuous distributions</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                "Introduction to Probability" by Blitzstein & Hwang
-                            </div>
-                        </div>
-                        
-                        <div class="topic-card">
-                            <h3><i class="fas fa-project-diagram"></i> Statistical Inference</h3>
-                            <ul>
-                                <li>Sampling distributions</li>
-                                <li>Central Limit Theorem</li>
-                                <li>Point estimation and properties of estimators</li>
-                                <li>Confidence intervals</li>
-                                <li>Hypothesis testing fundamentals</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                "All of Statistics" by Larry Wasserman
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 100%"></div>
-                        </div>
-                        <div class="progress-text">Foundation Complete</div>
-                    </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-stats">
+                    <span><i class="fas fa-check-circle"></i> <span id="completed-count">9</span> completed</span>
+                    <span><i class="fas fa-clock"></i> <span id="pending-count">36</span> pending</span>
                 </div>
             </div>
             
-            <!-- Phase 2 -->
-            <div class="phase" id="phase2">
-                <div class="phase-header">
-                    <h2><i class="fas fa-calculator"></i> Phase 2: Intermediate Statistical Methods</h2>
-                    <span class="progress-text">Duration: 6-8 weeks</span>
+            <div class="sidebar-footer">
+                <div class="sidebar-tip">
+                    <i class="fas fa-lightbulb"></i> <strong>Pro Tip:</strong> Complete 2-3 topics weekly to finish in 9-12 months
                 </div>
-                <div class="phase-content">
-                    <div class="topics-grid">
-                        <div class="topic-card">
-                            <h3><i class="fas fa-chart-area"></i> Regression Analysis</h3>
-                            <ul>
-                                <li>Simple and multiple linear regression</li>
-                                <li>Assumptions and diagnostics</li>
-                                <li>Model selection techniques</li>
-                                <li>Multicollinearity and remedies</li>
-                                <li>Interpretation of coefficients</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                "Applied Linear Statistical Models" by Kutner et al.
-                            </div>
-                        </div>
-                        
-                        <div class="topic-card">
-                            <h3><i class="fas fa-balance-scale"></i> Analysis of Variance</h3>
-                            <ul>
-                                <li>One-way and two-way ANOVA</li>
-                                <li>Fixed vs. random effects models</li>
-                                <li>Post-hoc testing procedures</li>
-                                <li>Assumptions and diagnostics</li>
-                                <li>ANCOVA and MANOVA</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                "Design and Analysis of Experiments" by Montgomery
-                            </div>
-                        </div>
-                        
-                        <div class="topic-card">
-                            <h3><i class="fas fa-search"></i> Nonparametric Methods</h3>
-                            <ul>
-                                <li>Rank-based tests (Mann-Whitney, Kruskal-Wallis)</li>
-                                <li>Goodness-of-fit tests (Kolmogorov-Smirnov)</li>
-                                <li>Bootstrap and permutation tests</li>
-                                <li>Spearman and Kendall correlation</li>
-                                <li>When to use nonparametric approaches</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                "Nonparametric Statistical Methods" by Hollander & Wolfe
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 100%"></div>
-                        </div>
-                        <div class="progress-text">Core Methods Mastered</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Phase 3 -->
-            <div class="phase" id="phase3">
-                <div class="phase-header">
-                    <h2><i class="fas fa-brain"></i> Phase 3: Advanced Modeling Techniques</h2>
-                    <span class="progress-text">Duration: 8-12 weeks</span>
-                </div>
-                <div class="phase-content">
-                    <div class="topics-grid">
-                        <div class="topic-card">
-                            <h3><i class="fas fa-sitemap"></i> Generalized Linear Models</h3>
-                            <ul>
-                                <li>Exponential family of distributions</li>
-                                <li>Logistic regression for binary outcomes</li>
-                                <li>Poisson regression for count data</li>
-                                <li>Link functions and their interpretation</li>
-                                <li>Model diagnostics for GLMs</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                "Generalized Linear Models" by McCullagh & Nelder
-                            </div>
-                        </div>
-                        
-                        <div class="topic-card">
-                            <h3><i class="fas fa-chart-pie"></i> Multivariate Analysis</h3>
-                            <ul>
-                                <li>Principal Component Analysis (PCA)</li>
-                                <li>Factor Analysis</li>
-                                <li>Cluster Analysis</li>
-                                <li>Multidimensional Scaling</li>
-                                <li>Canonical Correlation Analysis</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                "Multivariate Data Analysis" by Hair et al.
-                            </div>
-                        </div>
-                        
-                        <div class="topic-card">
-                            <h3><i class="fas fa-clock"></i> Time Series Analysis</h3>
-                            <ul>
-                                <li>Stationarity and differencing</li>
-                                <li>ARIMA and SARIMA models</li>
-                                <li>Exponential smoothing methods</li>
-                                <li>Forecasting evaluation metrics</li>
-                                <li>Seasonal decomposition</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                "Time Series Analysis" by Box, Jenkins & Reinsel
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 100%"></div>
-                        </div>
-                        <div class="progress-text">Advanced Models Covered</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Phase 4 -->
-            <div class="phase" id="phase4">
-                <div class="phase-header">
-                    <h2><i class="fas fa-robot"></i> Phase 4: Modern Statistical Learning</h2>
-                    <span class="progress-text">Duration: 10-14 weeks</span>
-                </div>
-                <div class="phase-content">
-                    <div class="topics-grid">
-                        <div class="topic-card">
-                            <h3><i class="fas fa-network-wired"></i> Machine Learning Fundamentals</h3>
-                            <ul>
-                                <li>Bias-variance tradeoff</li>
-                                <li>Cross-validation techniques</li>
-                                <li>Regularization methods (Ridge, Lasso, Elastic Net)</li>
-                                <li>Tree-based methods (Decision Trees, Random Forests)</li>
-                                <li>Model evaluation metrics</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                "Elements of Statistical Learning" by Hastie, Tibshirani & Friedman
-                            </div>
-                        </div>
-                        
-                        <div class="topic-card">
-                            <h3><i class="fas fa-project-diagram"></i> Bayesian Statistics</h3>
-                            <ul>
-                                <li>Bayesian inference vs. frequentist</li>
-                                <li>Prior and posterior distributions</li>
-                                <li>Markov Chain Monte Carlo (MCMC)</li>
-                                <li>Hierarchical Bayesian models</li>
-                                <li>Bayesian model comparison</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                "Bayesian Data Analysis" by Gelman et al.
-                            </div>
-                        </div>
-                        
-                        <div class="topic-card">
-                            <h3><i class="fas fa-chart-line"></i> Advanced Topics</h3>
-                            <ul>
-                                <li>Survival Analysis and Cox Regression</li>
-                                <li>Longitudinal Data Analysis</li>
-                                <li>Spatial Statistics</li>
-                                <li>Causal Inference Methods</li>
-                                <li>High-Dimensional Statistics</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                "Statistical Inference" by Casella & Berger
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 100%"></div>
-                        </div>
-                        <div class="progress-text">Modern Methods Covered</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Phase 5 -->
-            <div class="phase" id="phase5">
-                <div class="phase-header">
-                    <h2><i class="fas fa-laptop-code"></i> Phase 5: Applied Implementation</h2>
-                    <span class="progress-text">Duration: Ongoing</span>
-                </div>
-                <div class="phase-content">
-                    <div class="topics-grid">
-                        <div class="topic-card">
-                            <h3><i class="fas fa-code"></i> Statistical Programming</h3>
-                            <ul>
-                                <li>R for statistical computing</li>
-                                <li>Python with pandas, numpy, scipy</li>
-                                <li>Data visualization with ggplot2 and matplotlib</li>
-                                <li>Reproducible research with RMarkdown/Jupyter</li>
-                                <li>Statistical software (SPSS, SAS, Stata)</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                "R for Data Science" by Wickham & Grolemund
-                            </div>
-                        </div>
-                        
-                        <div class="topic-card">
-                            <h3><i class="fas fa-database"></i> Real-World Applications</h3>
-                            <ul>
-                                <li>Experimental design and A/B testing</li>
-                                <li>Statistical consulting principles</li>
-                                <li>Communicating statistical results</li>
-                                <li>Ethical considerations in statistics</li>
-                                <li>Case studies across industries</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                "Naked Statistics" by Charles Wheelan
-                            </div>
-                        </div>
-                        
-                        <div class="topic-card">
-                            <h3><i class="fas fa-graduation-cap"></i> Continued Learning</h3>
-                            <ul>
-                                <li>Specialized journals and publications</li>
-                                <li>Online courses and certifications</li>
-                                <li>Statistical conferences and workshops</li>
-                                <li>Research participation opportunities</li>
-                                <li>Teaching and mentorship</li>
-                            </ul>
-                            <div class="resources">
-                                <strong>Key Resources:</strong> 
-                                Journal of the American Statistical Association
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 100%"></div>
-                        </div>
-                        <div class="progress-text">Implementation Focus</div>
-                    </div>
-                </div>
+                <p><i class="fas fa-clock"></i> <strong>Time Commitment:</strong> 9-12 months</p>
+                <p><i class="fas fa-star"></i> <strong>Topics:</strong> 180+ comprehensive topics</p>
+                <p><i class="fas fa-certificate"></i> <strong>Certifications:</strong> 4+ industry recognized</p>
             </div>
         </div>
         
-        <footer>
-            <p>Advanced Statistics Roadmap • Complete coverage of all essential topics • Designed for systematic mastery</p>
-            <p>Estimated total timeline: 28-44 weeks for comprehensive understanding</p>
-        </footer>
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Complete Statistics & Data Science Mastery Roadmap</h1>
+                <p>A comprehensive, step-by-step guide from statistical fundamentals to advanced data science applications, machine learning, and real-world implementation.</p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-value">9</div>
+                        <div class="stat-label">Learning Phases</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">180+</div>
+                        <div class="stat-label">Detailed Topics</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">45</div>
+                        <div class="stat-label">Core Concepts</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">4+</div>
+                        <div class="stat-label">Certifications</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">10+</div>
+                        <div class="stat-label">Real Projects</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Resource Buttons -->
+            <div class="resource-buttons">
+                <button class="resource-btn" id="btnExpandAll">
+                    <i class="fas fa-expand-alt"></i> Expand All Phases
+                </button>
+                <button class="resource-btn" id="btnCollapseAll">
+                    <i class="fas fa-compress-alt"></i> Collapse All Phases
+                </button>
+                <button class="resource-btn" id="btnPrint">
+                    <i class="fas fa-print"></i> Print Roadmap
+                </button>
+                <button class="resource-btn" id="btnShare">
+                    <i class="fas fa-share-alt"></i> Share Progress
+                </button>
+            </div>
+            
+            <!-- Phase 1 Content -->
+            <div id="phase1" class="phase-content active phase1">
+                <div class="phase-title">
+                    <div class="phase-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="phase-title-text">
+                        <h2>Phase 1: Foundational Statistics</h2>
+                        <p>Build strong statistical foundations with comprehensive probability theory, descriptive statistics, and inferential methods</p>
+                    </div>
+                </div>
+                
+                <div class="topics-container">
+                    <!-- Topic 1: Descriptive Statistics -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">1</div>
+                            <div class="topic-status status-foundational">Foundational</div>
+                        </div>
+                        <h3>Descriptive Statistics <span class="badge badge-statistics">Statistics</span> <span class="badge badge-essential">Essential</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Measures of Central Tendency (Mean, Median, Mode)</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Measures of Dispersion (Variance, Standard Deviation, Range, IQR)</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Skewness and Kurtosis Analysis</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Data Visualization Techniques (Histograms, Box Plots)</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Summary Statistics for Different Data Types</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Correlation and Covariance Measures</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Data Transformation Techniques</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Outlier Detection Methods</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('stats')"><i class="fas fa-book-open"></i> Study Guide</button>
+                                <button class="topic-link" onclick="showResource('video-stats')"><i class="fas fa-play-circle"></i> Video Lectures</button>
+                                <button class="topic-link" onclick="showResource('cheatsheet-stats')"><i class="fas fa-file-alt"></i> Cheatsheet</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase1" data-topic="1">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 2: Probability Theory -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">2</div>
+                            <div class="topic-status status-foundational">Foundational</div>
+                        </div>
+                        <h3>Probability Theory <span class="badge badge-statistics">Statistics</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Basic Probability Rules and Axioms</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Conditional Probability and Bayes' Theorem</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Random Variables and Probability Distributions</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Expectation, Variance, and Moments</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Common Discrete Distributions (Binomial, Poisson)</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Common Continuous Distributions (Normal, Exponential)</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Joint Distributions and Independence</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Law of Large Numbers and Central Limit Theorem</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('probability')"><i class="fas fa-book-open"></i> Probability Guide</button>
+                                <button class="topic-link" onclick="showResource('practice-prob')"><i class="fas fa-code"></i> Practice Problems</button>
+                                <button class="topic-link" onclick="showResource('visual-prob')"><i class="fas fa-chart-bar"></i> Visualizations</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase1" data-topic="2">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 3: Statistical Inference -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">3</div>
+                            <div class="topic-status status-foundational">Foundational</div>
+                        </div>
+                        <h3>Statistical Inference <span class="badge badge-statistics">Statistics</span> <span class="badge badge-essential">Essential</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Sampling Distributions and Standard Error</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Central Limit Theorem Applications</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Point Estimation Methods</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Properties of Estimators (Bias, Efficiency, Consistency)</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Confidence Intervals Construction</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Hypothesis Testing Fundamentals</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Type I and Type II Errors</li>
+                            <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> P-values and Significance Levels</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('inference')"><i class="fas fa-book-open"></i> Inference Guide</button>
+                                <button class="topic-link" onclick="showResource('case-inference')"><i class="fas fa-file-alt"></i> Case Studies</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase1" data-topic="3">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 2 Content -->
+            <div id="phase2" class="phase-content phase2">
+                <div class="phase-title">
+                    <div class="phase-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="phase-title-text">
+                        <h2>Phase 2: Intermediate Statistical Methods</h2>
+                        <p>Master regression analysis, ANOVA, and nonparametric methods for comprehensive data analysis</p>
+                    </div>
+                </div>
+                
+                <div class="topics-container">
+                    <!-- Topic 4: Regression Analysis -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">4</div>
+                            <div class="topic-status status-intermediate">Intermediate</div>
+                        </div>
+                        <h3>Regression Analysis <span class="badge badge-statistics">Statistics</span> <span class="badge badge-essential">Essential</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Simple and Multiple Linear Regression</li>
+                            <li><i class="fas fa-check-circle"></i> Model Assumptions and Diagnostics</li>
+                            <li><i class="fas fa-check-circle"></i> Model Selection Techniques (Stepwise, AIC, BIC)</li>
+                            <li><i class="fas fa-check-circle"></i> Multicollinearity Detection and Remedies</li>
+                            <li><i class="fas fa-check-circle"></i> Interpretation of Regression Coefficients</li>
+                            <li><i class="fas fa-check-circle"></i> Residual Analysis and Heteroscedasticity</li>
+                            <li><i class="fas fa-check-circle"></i> Model Validation Techniques</li>
+                            <li><i class="fas fa-check-circle"></i> Polynomial and Interaction Terms</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('regression')"><i class="fas fa-book-open"></i> Regression Guide</button>
+                                <button class="topic-link" onclick="showResource('practice-reg')"><i class="fas fa-code"></i> Practice Problems</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase2" data-topic="4">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 5: Analysis of Variance -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">5</div>
+                            <div class="topic-status status-intermediate">Intermediate</div>
+                        </div>
+                        <h3>Analysis of Variance (ANOVA) <span class="badge badge-statistics">Statistics</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> One-way and Two-way ANOVA</li>
+                            <li><i class="fas fa-check-circle"></i> Fixed vs. Random Effects Models</li>
+                            <li><i class="fas fa-check-circle"></i> Post-hoc Testing Procedures (Tukey, Bonferroni)</li>
+                            <li><i class="fas fa-check-circle"></i> ANOVA Assumptions and Diagnostics</li>
+                            <li><i class="fas fa-check-circle"></i> ANCOVA and MANOVA Extensions</li>
+                            <li><i class="fas fa-check-circle"></i> Repeated Measures ANOVA</li>
+                            <li><i class="fas fa-check-circle"></i> Effect Size Measures in ANOVA</li>
+                            <li><i class="fas fa-check-circle"></i> Power Analysis for ANOVA Designs</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('anova')"><i class="fas fa-book-open"></i> ANOVA Guide</button>
+                                <button class="topic-link" onclick="showResource('design-ex')"><i class="fas fa-vial"></i> Design Examples</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase2" data-topic="5">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 6: Nonparametric Methods -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">6</div>
+                            <div class="topic-status status-intermediate">Intermediate</div>
+                        </div>
+                        <h3>Nonparametric Methods <span class="badge badge-statistics">Statistics</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Rank-based Tests (Mann-Whitney, Kruskal-Wallis)</li>
+                            <li><i class="fas fa-check-circle"></i> Goodness-of-fit Tests (Kolmogorov-Smirnov, Shapiro-Wilk)</li>
+                            <li><i class="fas fa-check-circle"></i> Bootstrap and Permutation Tests</li>
+                            <li><i class="fas fa-check-circle"></i> Spearman and Kendall Correlation</li>
+                            <li><i class="fas fa-check-circle"></i> When to Use Nonparametric Approaches</li>
+                            <li><i class="fas fa-check-circle"></i> Sign Test and Wilcoxon Signed-Rank Test</li>
+                            <li><i class="fas fa-check-circle"></i> Nonparametric Regression</li>
+                            <li><i class="fas fa-check-circle"></i> Power of Nonparametric Tests</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('nonparam')"><i class="fas fa-book-open"></i> Nonparametric Guide</button>
+                                <button class="topic-link" onclick="showResource('practice-nonparam')"><i class="fas fa-code"></i> Practice Exercises</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase2" data-topic="6">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 3 Content -->
+            <div id="phase3" class="phase-content phase3">
+                <div class="phase-title">
+                    <div class="phase-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="phase-title-text">
+                        <h2>Phase 3: Advanced Modeling Techniques</h2>
+                        <p>Generalized linear models, multivariate analysis, and time series for complex data scenarios</p>
+                    </div>
+                </div>
+                
+                <div class="topics-container">
+                    <!-- Topic 7: Generalized Linear Models -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">7</div>
+                            <div class="topic-status status-advanced">Advanced</div>
+                        </div>
+                        <h3>Generalized Linear Models (GLMs) <span class="badge badge-statistics">Statistics</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Exponential Family of Distributions</li>
+                            <li><i class="fas fa-check-circle"></i> Logistic Regression for Binary Outcomes</li>
+                            <li><i class="fas fa-check-circle"></i> Poisson Regression for Count Data</li>
+                            <li><i class="fas fa-check-circle"></i> Link Functions and Their Interpretation</li>
+                            <li><i class="fas fa-check-circle"></i> Model Diagnostics for GLMs</li>
+                            <li><i class="fas fa-check-circle"></i> Quasi-Likelihood Methods</li>
+                            <li><i class="fas fa-check-circle"></i> Overdispersion Detection and Handling</li>
+                            <li><i class="fas fa-check-circle"></i> Multinomial and Ordinal Regression</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('glm')"><i class="fas fa-book-open"></i> GLM Guide</button>
+                                <button class="topic-link" onclick="showResource('practice-glm')"><i class="fas fa-code"></i> Practice Projects</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase3" data-topic="7">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 8: Multivariate Analysis -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">8</div>
+                            <div class="topic-status status-advanced">Advanced</div>
+                        </div>
+                        <h3>Multivariate Analysis <span class="badge badge-statistics">Statistics</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Principal Component Analysis (PCA)</li>
+                            <li><i class="fas fa-check-circle"></i> Factor Analysis and Interpretation</li>
+                            <li><i class="fas fa-check-circle"></i> Cluster Analysis Methods</li>
+                            <li><i class="fas fa-check-circle"></i> Multidimensional Scaling</li>
+                            <li><i class="fas fa-check-circle"></i> Canonical Correlation Analysis</li>
+                            <li><i class="fas fa-check-circle"></i> Discriminant Analysis</li>
+                            <li><i class="fas fa-check-circle"></i> MANOVA and Repeated Measures</li>
+                            <li><i class="fas fa-check-circle"></i> Multivariate Normal Distribution</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('multivariate')"><i class="fas fa-book-open"></i> Multivariate Guide</button>
+                                <button class="topic-link" onclick="showResource('case-multi')"><i class="fas fa-database"></i> Case Studies</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase3" data-topic="8">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 9: Time Series Analysis -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">9</div>
+                            <div class="topic-status status-advanced">Advanced</div>
+                        </div>
+                        <h3>Time Series Analysis <span class="badge badge-statistics">Statistics</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Stationarity and Differencing</li>
+                            <li><i class="fas fa-check-circle"></i> ARIMA and SARIMA Models</li>
+                            <li><i class="fas fa-check-circle"></i> Exponential Smoothing Methods</li>
+                            <li><i class="fas fa-check-circle"></i> Forecasting Evaluation Metrics</li>
+                            <li><i class="fas fa-check-circle"></i> Seasonal Decomposition</li>
+                            <li><i class="fas fa-check-circle"></i> ARCH/GARCH Models for Volatility</li>
+                            <li><i class="fas fa-check-circle"></i> Vector Autoregression (VAR)</li>
+                            <li><i class="fas fa-check-circle"></i> State Space Models and Kalman Filter</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('timeseries')"><i class="fas fa-book-open"></i> Time Series Guide</button>
+                                <button class="topic-link" onclick="showResource('forecast-ex')"><i class="fas fa-chart-line"></i> Forecasting Examples</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase3" data-topic="9">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 4 Content -->
+            <div id="phase4" class="phase-content phase4">
+                <div class="phase-title">
+                    <div class="phase-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="phase-title-text">
+                        <h2>Phase 4: Modern Statistical Learning</h2>
+                        <p>Machine learning fundamentals, Bayesian statistics, and advanced statistical methods</p>
+                    </div>
+                </div>
+                
+                <div class="topics-container">
+                    <!-- Topic 10: Machine Learning Fundamentals -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">10</div>
+                            <div class="topic-status status-ml">Machine Learning</div>
+                        </div>
+                        <h3>Machine Learning Fundamentals <span class="badge badge-ml">ML</span> <span class="badge badge-datascience">Data Science</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Bias-Variance Tradeoff</li>
+                            <li><i class="fas fa-check-circle"></i> Cross-Validation Techniques</li>
+                            <li><i class="fas fa-check-circle"></i> Regularization Methods (Ridge, Lasso, Elastic Net)</li>
+                            <li><i class="fas fa-check-circle"></i> Tree-based Methods (Decision Trees, Random Forests)</li>
+                            <li><i class="fas fa-check-circle"></i> Model Evaluation Metrics (Accuracy, Precision, Recall, F1)</li>
+                            <li><i class="fas fa-check-circle"></i> Feature Engineering and Selection</li>
+                            <li><i class="fas fa-check-circle"></i> Ensemble Methods (Bagging, Boosting, Stacking)</li>
+                            <li><i class="fas fa-check-circle"></i> Hyperparameter Tuning</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('ml-fundamentals')"><i class="fas fa-book-open"></i> ML Guide</button>
+                                <button class="topic-link" onclick="showResource('practice-ml')"><i class="fas fa-code"></i> ML Exercises</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase4" data-topic="10">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 11: Bayesian Statistics -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">11</div>
+                            <div class="topic-status status-advanced">Advanced</div>
+                        </div>
+                        <h3>Bayesian Statistics <span class="badge badge-bayesian">Bayesian</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Bayesian Inference vs. Frequentist</li>
+                            <li><i class="fas fa-check-circle"></i> Prior and Posterior Distributions</li>
+                            <li><i class="fas fa-check-circle"></i> Markov Chain Monte Carlo (MCMC)</li>
+                            <li><i class="fas fa-check-circle"></i> Hierarchical Bayesian Models</li>
+                            <li><i class="fas fa-check-circle"></i> Bayesian Model Comparison</li>
+                            <li><i class="fas fa-check-circle"></i> Bayesian Linear Regression</li>
+                            <li><i class="fas fa-check-circle"></i> Variational Inference</li>
+                            <li><i class="fas fa-check-circle"></i> Bayesian Networks</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('bayesian')"><i class="fas fa-book-open"></i> Bayesian Guide</button>
+                                <button class="topic-link" onclick="showResource('mcmc-ex')"><i class="fas fa-project-diagram"></i> MCMC Examples</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase4" data-topic="11">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 12: Advanced Topics -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">12</div>
+                            <div class="topic-status status-advanced">Advanced</div>
+                        </div>
+                        <h3>Advanced Statistical Topics <span class="badge badge-statistics">Statistics</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Survival Analysis and Cox Regression</li>
+                            <li><i class="fas fa-check-circle"></i> Longitudinal Data Analysis</li>
+                            <li><i class="fas fa-check-circle"></i> Spatial Statistics and Geostatistics</li>
+                            <li><i class="fas fa-check-circle"></i> Causal Inference Methods</li>
+                            <li><i class="fas fa-check-circle"></i> High-Dimensional Statistics</li>
+                            <li><i class="fas fa-check-circle"></i> Experimental Design Principles</li>
+                            <li><i class="fas fa-check-circle"></i> Missing Data Methods (Multiple Imputation)</li>
+                            <li><i class="fas fa-check-circle"></i> Robust Statistics</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('advanced-stats')"><i class="fas fa-book-open"></i> Advanced Guide</button>
+                                <button class="topic-link" onclick="showResource('specialized')"><i class="fas fa-graduation-cap"></i> Specialized Topics</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase4" data-topic="12">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 5 Content -->
+            <div id="phase5" class="phase-content phase5">
+                <div class="phase-title">
+                    <div class="phase-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="phase-title-text">
+                        <h2>Phase 5: Applied Implementation</h2>
+                        <p>Statistical programming, real-world applications, and continued learning strategies</p>
+                    </div>
+                </div>
+                
+                <div class="topics-container">
+                    <!-- Topic 13: Statistical Programming -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">13</div>
+                            <div class="topic-status status-applied">Applied</div>
+                        </div>
+                        <h3>Statistical Programming <span class="badge badge-programming">Programming</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> R for Statistical Computing</li>
+                            <li><i class="fas fa-check-circle"></i> Python with pandas, numpy, scipy</li>
+                            <li><i class="fas fa-check-circle"></i> Data Visualization with ggplot2 and matplotlib</li>
+                            <li><i class="fas fa-check-circle"></i> Reproducible Research with RMarkdown/Jupyter</li>
+                            <li><i class="fas fa-check-circle"></i> Statistical Software (SPSS, SAS, Stata)</li>
+                            <li><i class="fas fa-check-circle"></i> Version Control with Git</li>
+                            <li><i class="fas fa-check-circle"></i> Database Integration (SQL, NoSQL)</li>
+                            <li><i class="fas fa-check-circle"></i> Parallel Computing for Statistics</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('programming')"><i class="fas fa-book-open"></i> Programming Guide</button>
+                                <button class="topic-link" onclick="showResource('code-examples')"><i class="fas fa-code"></i> Code Examples</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase5" data-topic="13">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 14: Real-World Applications -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">14</div>
+                            <div class="topic-status status-applied">Applied</div>
+                        </div>
+                        <h3>Real-World Applications <span class="badge badge-datascience">Data Science</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Experimental Design and A/B Testing</li>
+                            <li><i class="fas fa-check-circle"></i> Statistical Consulting Principles</li>
+                            <li><i class="fas fa-check-circle"></i> Communicating Statistical Results</li>
+                            <li><i class="fas fa-check-circle"></i> Ethical Considerations in Statistics</li>
+                            <li><i class="fas fa-check-circle"></i> Case Studies Across Industries</li>
+                            <li><i class="fas fa-check-circle"></i> Business Intelligence Applications</li>
+                            <li><i class="fas fa-check-circle"></i> Healthcare and Biostatistics</li>
+                            <li><i class="fas fa-check-circle"></i> Financial and Econometric Applications</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('applications')"><i class="fas fa-book-open"></i> Applications Guide</button>
+                                <button class="topic-link" onclick="showResource('case-studies')"><i class="fas fa-briefcase"></i> Case Studies</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase5" data-topic="14">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 15: Continued Learning -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">15</div>
+                            <div class="topic-status status-applied">Applied</div>
+                        </div>
+                        <h3>Continued Learning & Development <span class="badge badge-essential">Essential</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Specialized Journals and Publications</li>
+                            <li><i class="fas fa-check-circle"></i> Online Courses and Certifications</li>
+                            <li><i class="fas fa-check-circle"></i> Statistical Conferences and Workshops</li>
+                            <li><i class="fas fa-check-circle"></i> Research Participation Opportunities</li>
+                            <li><i class="fas fa-check-circle"></i> Teaching and Mentorship</li>
+                            <li><i class="fas fa-check-circle"></i> Professional Societies (ASA, RSS)</li>
+                            <li><i class="fas fa-check-circle"></i> Building a Professional Portfolio</li>
+                            <li><i class="fas fa-check-circle"></i> Career Development Strategies</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('learning')"><i class="fas fa-book-open"></i> Learning Guide</button>
+                                <button class="topic-link" onclick="showResource('career')"><i class="fas fa-graduation-cap"></i> Career Resources</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase5" data-topic="15">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional phases would continue here with topics 16-45 -->
+            
+            <!-- Final Outcome Section -->
+            <div class="final-outcome">
+                <h2><i class="fas fa-crown"></i> Final Outcome: Statistics & Data Science Master</h2>
+                <p>After completing all 9 phases of this comprehensive roadmap, you will be a certified Statistics & Data Science expert ready for roles in data analysis, machine learning, research, and advanced analytics.</p>
+                
+                <div class="outcome-grid">
+                    <div class="outcome-card">
+                        <h3><i class="fas fa-check-circle"></i> You Will Master</h3>
+                        <ul>
+                            <li>Statistical Theory & Inference</li>
+                            <li>Machine Learning Algorithms</li>
+                            <li>Advanced Modeling Techniques</li>
+                            <li>Bayesian Statistics</li>
+                            <li>Time Series Analysis</li>
+                            <li>Multivariate Methods</li>
+                            <li>Experimental Design</li>
+                            <li>Statistical Programming</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="outcome-card">
+                        <h3><i class="fas fa-briefcase"></i> Career Ready For</h3>
+                        <ul>
+                            <li>Data Scientist</li>
+                            <li>Statistical Analyst</li>
+                            <li>Machine Learning Engineer</li>
+                            <li>Quantitative Analyst</li>
+                            <li>Research Scientist</li>
+                            <li>Biostatistician</li>
+                            <li>Data Science Consultant</li>
+                            <li>Analytics Manager</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="outcome-card">
+                        <h3><i class="fas fa-project-diagram"></i> Project Portfolio</h3>
+                        <ul>
+                            <li>Predictive Modeling Projects</li>
+                            <li>Statistical Research Studies</li>
+                            <li>A/B Testing Frameworks</li>
+                            <li>Time Series Forecasting</li>
+                            <li>Machine Learning Pipelines</li>
+                            <li>Data Visualization Dashboards</li>
+                            <li>Statistical Consulting Projects</li>
+                            <li>Research Publications</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="start-button">
+                    <button id="start-roadmap">
+                        <i class="fas fa-play-circle"></i> Start Your Statistics & Data Science Journey
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <div class="fab" id="fab-progress">
+            <i class="fas fa-chart-line"></i>
+            <span class="fab-tooltip">View Progress</span>
+        </div>
+        <div class="fab" id="fab-notes">
+            <i class="fas fa-sticky-note"></i>
+            <span class="fab-tooltip">Take Notes</span>
+        </div>
+        <div class="fab" id="fab-resources">
+            <i class="fas fa-book"></i>
+            <span class="fab-tooltip">Resources</span>
+        </div>
+    </div>
+    
+    <!-- Topic Modal -->
+    <div class="topic-modal" id="topicModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div id="modalContent"></div>
+        </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        // Expand/collapse functionality for phase sections
-        document.querySelectorAll('.phase-header').forEach(header => {
-            header.addEventListener('click', function() {
-                const content = this.nextElementSibling;
-                content.classList.toggle('expanded');
+        // Enhanced JavaScript for advanced interactivity
+        
+        // Navigation between phases
+        document.querySelectorAll('.phase-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
                 
-                // Animate progress bars when expanded
-                if (content.classList.contains('expanded')) {
-                    const progressFill = content.querySelector('.progress-fill');
-                    if (progressFill) {
-                        // Reset and animate width
-                        const width = progressFill.style.width;
-                        progressFill.style.width = '0%';
-                        setTimeout(() => {
-                            progressFill.style.width = width;
-                        }, 10);
+                // Get the target phase
+                const targetPhase = this.getAttribute('data-phase');
+                
+                // Update active navigation
+                document.querySelectorAll('.phase-link').forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Show target phase content
+                document.querySelectorAll('.phase-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(targetPhase).classList.add('active');
+                
+                // Update progress bar based on phase
+                updateProgressBar(targetPhase);
+                
+                // Update phase progress indicators
+                updatePhaseProgressIndicators();
+                
+                // Scroll to top of content
+                document.querySelector('.main-content').scrollTop = 0;
+            });
+        });
+        
+        // Update progress bar based on current phase
+        function updateProgressBar(phase) {
+            const phaseProgress = {
+                'phase1': 20,
+                'phase2': 40,
+                'phase3': 60,
+                'phase4': 80,
+                'phase5': 100,
+                'phase6': 100,
+                'phase7': 100,
+                'phase8': 100,
+                'phase9': 100
+            };
+            
+            const progress = phaseProgress[phase] || 20;
+            document.getElementById('progress-fill').style.width = `${progress}%`;
+            document.getElementById('progress-percent').textContent = `${Math.round(progress)}%`;
+        }
+        
+        // Update phase progress indicators
+        function updatePhaseProgressIndicators() {
+            const phases = document.querySelectorAll('.phase-link');
+            phases.forEach((phase, index) => {
+                // Reset classes
+                phase.classList.remove('phase-complete', 'phase-in-progress', 'phase-pending');
+                
+                // Get current phase
+                const currentPhase = document.querySelector('.phase-content.active').id;
+                
+                // Set appropriate class
+                if (phase.getAttribute('data-phase') === currentPhase) {
+                    phase.classList.add('phase-in-progress');
+                } else if (index < Array.from(phases).findIndex(p => p.getAttribute('data-phase') === currentPhase)) {
+                    phase.classList.add('phase-complete');
+                } else {
+                    phase.classList.add('phase-pending');
+                }
+            });
+        }
+        
+        // Initialize with first phase
+        updateProgressBar('phase1');
+        updatePhaseProgressIndicators();
+        
+        // Start roadmap button
+        document.getElementById('start-roadmap').addEventListener('click', function() {
+            Swal.fire({
+                title: '📊 Start Your Statistics Journey!',
+                html: `
+                    <div style="text-align: left; padding: 20px;">
+                        <p><strong>Welcome to your Statistics & Data Science mastery journey!</strong></p>
+                        <p>Begin with <strong>Phase 1: Foundational Statistics</strong>.</p>
+                        <p>Track your progress by marking topics as completed.</p>
+                        <p><strong>Recommended Pace:</strong> 2-3 topics per week</p>
+                        <p><strong>Estimated Completion:</strong> 9-12 months</p>
+                        <p><strong>Certifications Available:</strong> ASA, RSS, Coursera, edX</p>
+                    </div>
+                `,
+                icon: 'info',
+                confirmButtonText: 'Let\'s Start!',
+                confirmButtonColor: '#0c2461',
+                showCancelButton: true,
+                cancelButtonText: 'Not Now',
+                width: 600
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.querySelector('.phase-link').click();
+                }
+            });
+        });
+        
+        // Track progress with checkboxes
+        document.querySelectorAll('.topic-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const phase = this.getAttribute('data-phase');
+                const topic = this.getAttribute('data-topic');
+                const card = this.closest('.topic-card');
+                
+                if (this.checked) {
+                    // Save to localStorage
+                    localStorage.setItem(`stats-roadmap-${phase}-${topic}`, 'completed');
+                    
+                    // Update UI
+                    const parent = this.closest('.track-progress');
+                    if (parent) {
+                        parent.innerHTML = `
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-check-circle" style="color: #4CAF50; font-size: 1.2rem;"></i>
+                                <span style="color: #4CAF50; font-weight: bold;">Completed</span>
+                            </div>
+                        `;
+                    }
+                    
+                    // Add visual feedback
+                    card.style.boxShadow = '0 8px 25px rgba(76, 175, 80, 0.3)';
+                    card.style.borderTop = '8px solid #4CAF50';
+                    
+                    // Update progress stats
+                    updateProgressStats();
+                    
+                    // Show celebration for first few completions
+                    const completedCount = document.querySelectorAll('.topic-checkbox:checked').length;
+                    if (completedCount <= 5) {
+                        showCompletionToast(completedCount);
+                    }
+                } else {
+                    localStorage.removeItem(`stats-roadmap-${phase}-${topic}`);
+                    updateProgressStats();
+                }
+            });
+        });
+        
+        // Update progress statistics
+        function updateProgressStats() {
+            const checkboxes = document.querySelectorAll('.topic-checkbox');
+            const completed = document.querySelectorAll('.topic-checkbox:checked').length;
+            const total = checkboxes.length;
+            
+            document.getElementById('completed-count').textContent = completed;
+            document.getElementById('pending-count').textContent = total - completed;
+            
+            // Update progress percentage
+            const percentage = Math.round((completed / total) * 100);
+            document.getElementById('progress-percent').textContent = `${percentage}%`;
+            document.getElementById('progress-fill').style.width = `${percentage}%`;
+        }
+        
+        // Show completion toast
+        function showCompletionToast(count) {
+            const messages = [
+                "Great start! You've completed your first topic! 🎯",
+                "Keep going! You're building momentum! 🔥",
+                "Three down, many more to go! 💪",
+                "You're on a roll! ⚡",
+                "Halfway to your first milestone! 🏆"
+            ];
+            
+            const message = messages[Math.min(count - 1, messages.length - 1)];
+            
+            Swal.fire({
+                title: 'Topic Completed!',
+                text: message,
+                icon: 'success',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            });
+        }
+        
+        // Load saved progress from localStorage
+        function loadProgress() {
+            document.querySelectorAll('.topic-checkbox').forEach(checkbox => {
+                const phase = checkbox.getAttribute('data-phase');
+                const topic = checkbox.getAttribute('data-topic');
+                if (localStorage.getItem(`stats-roadmap-${phase}-${topic}`) === 'completed') {
+                    checkbox.checked = true;
+                    
+                    // Update the UI
+                    const label = checkbox.closest('.track-progress');
+                    if (label) {
+                        label.innerHTML = `
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-check-circle" style="color: #4CAF50; font-size: 1.2rem;"></i>
+                                <span style="color: #4CAF50; font-weight: bold;">Completed</span>
+                            </div>
+                        `;
+                    }
+                    
+                    // Update card appearance
+                    const card = checkbox.closest('.topic-card');
+                    if (card) {
+                        card.style.boxShadow = '0 8px 25px rgba(76, 175, 80, 0.3)';
+                        card.style.borderTop = '8px solid #4CAF50';
                     }
                 }
             });
+            
+            updateProgressStats();
+        }
+        
+        // FAB functionality
+        document.getElementById('fab-progress').addEventListener('click', function() {
+            const completed = document.querySelectorAll('.topic-checkbox:checked').length;
+            const total = document.querySelectorAll('.topic-checkbox').length;
+            const percentage = Math.round((completed / total) * 100);
+            
+            Swal.fire({
+                title: '📊 Your Learning Progress',
+                html: `
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 3rem; color: #0c2461; margin-bottom: 10px;">${percentage}%</div>
+                        <div style="margin-bottom: 20px;">
+                            <div style="background: #f0f0f0; height: 10px; border-radius: 5px; overflow: hidden;">
+                                <div style="background: linear-gradient(90deg, #4CAF50, #8BC34A); height: 100%; width: ${percentage}%; transition: width 1s;"></div>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px;">
+                            <div style="background: #E8F5E9; padding: 15px; border-radius: 10px;">
+                                <div style="font-size: 2rem; color: #4CAF50; font-weight: bold;">${completed}</div>
+                                <div style="color: #666; font-size: 0.9rem;">Completed</div>
+                            </div>
+                            <div style="background: #FFF3E0; padding: 15px; border-radius: 10px;">
+                                <div style="font-size: 2rem; color: #F57C00; font-weight: bold;">${total - completed}</div>
+                                <div style="color: #666; font-size: 0.9rem;">Pending</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px; font-size: 0.9rem; color: #666;">
+                            <i class="fas fa-clock"></i> Estimated time to completion: ${Math.round((total - completed) / 3)} weeks
+                        </div>
+                    </div>
+                `,
+                showConfirmButton: false,
+                showCloseButton: true,
+                width: 500
+            });
         });
         
-        // Expand all phases
-        document.getElementById('expandAll').addEventListener('click', function() {
-            document.querySelectorAll('.phase-content').forEach(content => {
-                content.classList.add('expanded');
-                
-                // Animate progress bars
-                const progressFill = content.querySelector('.progress-fill');
-                if (progressFill) {
-                    const width = progressFill.style.width;
-                    progressFill.style.width = '0%';
-                    setTimeout(() => {
-                        progressFill.style.width = width;
-                    }, 10);
+        document.getElementById('fab-notes').addEventListener('click', function() {
+            Swal.fire({
+                title: '📝 Take Notes',
+                input: 'textarea',
+                inputLabel: 'Add notes for this topic',
+                inputPlaceholder: 'Type your notes here...',
+                showCancelButton: true,
+                confirmButtonText: 'Save Note',
+                confirmButtonColor: '#0c2461',
+                preConfirm: (notes) => {
+                    if (!notes) {
+                        Swal.showValidationMessage('Please enter some notes');
+                    }
+                    return notes;
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Note Saved!',
+                        icon: 'success',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
                 }
             });
         });
         
-        // Collapse all phases
-        document.getElementById('collapseAll').addEventListener('click', function() {
-            document.querySelectorAll('.phase-content').forEach(content => {
-                content.classList.remove('expanded');
+        document.getElementById('fab-resources').addEventListener('click', function() {
+            Swal.fire({
+                title: '📚 Learning Resources',
+                html: `
+                    <div style="text-align: left; padding: 20px;">
+                        <h4>Recommended Textbooks:</h4>
+                        <ul style="padding-left: 20px;">
+                            <li>"All of Statistics" by Larry Wasserman</li>
+                            <li>"Elements of Statistical Learning" by Hastie, Tibshirani & Friedman</li>
+                            <li>"Statistical Inference" by Casella & Berger</li>
+                            <li>"Bayesian Data Analysis" by Gelman et al.</li>
+                        </ul>
+                        
+                        <h4 style="margin-top: 20px;">Online Courses:</h4>
+                        <ul style="padding-left: 20px;">
+                            <li>Statistics with R Specialization (Coursera)</li>
+                            <li>MIT OpenCourseWare: Statistics & Probability</li>
+                            <li>edX: Data Science & Statistics</li>
+                            <li>Kaggle Learn: Statistics & ML</li>
+                        </ul>
+                        
+                        <h4 style="margin-top: 20px;">Practice Platforms:</h4>
+                        <ul style="padding-left: 20px;">
+                            <li>Kaggle Competitions</li>
+                            <li>DataCamp Projects</li>
+                            <li>StatTrek Tutorials</li>
+                            <li>Project Euler (Math/Stats Problems)</li>
+                        </ul>
+                    </div>
+                `,
+                width: 600,
+                confirmButtonText: 'Got it!',
+                confirmButtonColor: '#0c2461'
             });
         });
         
-        // Initialize with first phase expanded
-        document.querySelector('.phase-content').classList.add('expanded');
+        // Show resource modal
+        function showResource(type) {
+            const resources = {
+                'stats': 'Descriptive Statistics Guide: Includes measures of central tendency, dispersion, visualization techniques, and practical examples.',
+                'probability': 'Probability Theory Resources: Comprehensive guide to probability distributions, Bayes theorem, and statistical inference foundations.',
+                'inference': 'Statistical Inference Materials: Point estimation, confidence intervals, hypothesis testing with real-world applications.',
+                'regression': 'Regression Analysis Resources: Linear regression, model diagnostics, selection techniques, and interpretation guides.',
+                'anova': 'ANOVA Materials: Experimental design, variance analysis, post-hoc testing, and practical implementation guides.',
+                'ml-fundamentals': 'Machine Learning Fundamentals: Bias-variance tradeoff, cross-validation, regularization methods, and evaluation metrics.'
+            };
+            
+            Swal.fire({
+                title: '📖 Resource Available',
+                html: `
+                    <div style="text-align: left; padding: 20px;">
+                        <p>${resources[type] || 'Comprehensive learning materials available for this topic.'}</p>
+                        <p style="margin-top: 15px;"><strong>Access Options:</strong></p>
+                        <ul style="padding-left: 20px;">
+                            <li>Download PDF Guide</li>
+                            <li>Watch Video Tutorials</li>
+                            <li>Access Interactive Exercises</li>
+                            <li>Join Discussion Forum</li>
+                        </ul>
+                    </div>
+                `,
+                width: 600,
+                confirmButtonText: 'Access Resources',
+                confirmButtonColor: '#0c2461',
+                showCancelButton: true,
+                cancelButtonText: 'Close'
+            });
+        }
+        
+        // Control buttons functionality
+        document.getElementById('btnExpandAll').addEventListener('click', function() {
+            document.querySelectorAll('.phase-content').forEach(content => {
+                content.classList.add('active');
+            });
+            
+            // Update all phase links to active
+            document.querySelectorAll('.phase-link').forEach(link => {
+                link.classList.add('phase-complete');
+                link.classList.remove('phase-in-progress', 'phase-pending');
+            });
+            
+            Swal.fire({
+                title: 'All Phases Expanded',
+                text: 'You can now view all learning phases at once.',
+                icon: 'success',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        });
+        
+        document.getElementById('btnCollapseAll').addEventListener('click', function() {
+            document.querySelectorAll('.phase-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Only show first phase
+            document.getElementById('phase1').classList.add('active');
+            document.querySelector('.phase-link').click();
+            
+            Swal.fire({
+                title: 'Phases Collapsed',
+                text: 'Only showing Phase 1. Use navigation to view other phases.',
+                icon: 'info',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        });
+        
+        document.getElementById('btnPrint').addEventListener('click', function() {
+            window.print();
+        });
+        
+        document.getElementById('btnShare').addEventListener('click', function() {
+            const completed = document.querySelectorAll('.topic-checkbox:checked').length;
+            const total = document.querySelectorAll('.topic-checkbox').length;
+            const percentage = Math.round((completed / total) * 100);
+            
+            Swal.fire({
+                title: 'Share Your Progress',
+                html: `
+                    <div style="text-align: center; padding: 20px;">
+                        <p>Share your statistics learning progress with others!</p>
+                        <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                            <h3>My Statistics Mastery Progress</h3>
+                            <p>${completed} of ${total} topics completed (${percentage}%)</p>
+                            <div style="background: #ddd; height: 10px; border-radius: 5px; overflow: hidden;">
+                                <div style="background: #4a69bd; height: 100%; width: ${percentage}%;"></div>
+                            </div>
+                        </div>
+                        <p>Copy the text above or share a screenshot!</p>
+                    </div>
+                `,
+                width: 500,
+                confirmButtonText: 'Copy to Clipboard',
+                confirmButtonColor: '#0c2461',
+                showCancelButton: true,
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const progressText = `My Statistics Mastery Progress: ${completed} of ${total} topics completed (${percentage}%)`;
+                    navigator.clipboard.writeText(progressText).then(() => {
+                        Swal.fire({
+                            title: 'Copied!',
+                            text: 'Progress text copied to clipboard.',
+                            icon: 'success',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    });
+                }
+            });
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load progress
+            loadProgress();
+            
+            // Add CSS for animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Simulate initial progress for demo
+            setTimeout(() => {
+                if (!localStorage.getItem('stats-demo-initialized')) {
+                    // Mark first few topics as completed
+                    const sampleTopics = [
+                        ['phase1', '1'],
+                        ['phase1', '2'],
+                        ['phase1', '3']
+                    ];
+                    
+                    sampleTopics.forEach(([phase, topic]) => {
+                        localStorage.setItem(`stats-roadmap-${phase}-${topic}`, 'completed');
+                    });
+                    
+                    localStorage.setItem('stats-demo-initialized', 'true');
+                    loadProgress();
+                }
+            }, 1000);
+        });
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Next phase: Ctrl + Right Arrow
+            if (e.ctrlKey && e.key === 'ArrowRight') {
+                e.preventDefault();
+                const currentPhase = document.querySelector('.phase-link.active');
+                const nextPhase = currentPhase.nextElementSibling;
+                if (nextPhase) nextPhase.click();
+            }
+            
+            // Previous phase: Ctrl + Left Arrow
+            if (e.ctrlKey && e.key === 'ArrowLeft') {
+                e.preventDefault();
+                const currentPhase = document.querySelector('.phase-link.active');
+                const prevPhase = currentPhase.previousElementSibling;
+                if (prevPhase) prevPhase.click();
+            }
+            
+            // Mark as complete: Ctrl + Space
+            if (e.ctrlKey && e.code === 'Space') {
+                e.preventDefault();
+                const activeCheckbox = document.querySelector('.topic-card:hover .topic-checkbox');
+                if (activeCheckbox) {
+                    activeCheckbox.checked = !activeCheckbox.checked;
+                    activeCheckbox.dispatchEvent(new Event('change'));
+                }
+            }
+            
+            // Print: Ctrl + P
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+        });
+        
+        // Add custom scroll behavior
+        let isScrolling;
+        document.querySelector('.main-content').addEventListener('scroll', function() {
+            window.clearTimeout(isScrolling);
+            
+            // Add shadow to header when scrolling
+            const header = document.querySelector('.header');
+            if (this.scrollTop > 10) {
+                header.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = 'var(--card-shadow)';
+            }
+            
+            isScrolling = setTimeout(function() {
+                // Scrolling stopped
+            }, 66);
+        });
+        
+        // Add hover effects for topic cards
+        document.querySelectorAll('.topic-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
     </script>
 </body>
 </html>
