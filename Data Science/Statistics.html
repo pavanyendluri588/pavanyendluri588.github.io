@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Statistics & Data Science Mastery Roadmap</title>
+    <title>Complete Statistics Mastery Roadmap</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
@@ -23,8 +23,6 @@
             --future: #BDBDBD;
             --primary: #0c2461;
             --statistics-blue: #4a69bd;
-            --datascience-orange: #FF5722;
-            --ml-purple: #9C27B0;
             --light-bg: #f8f9fa;
             --card-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
             --card-hover-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
@@ -499,11 +497,6 @@
             color: #7B1FA2;
         }
         
-        .status-ml {
-            background-color: #FFEBEE;
-            color: #C62828;
-        }
-        
         .status-applied {
             background-color: #FFF3E0;
             color: #EF6C00;
@@ -647,22 +640,12 @@
             color: white;
         }
         
-        .badge-ml {
-            background-color: var(--ml-purple);
-            color: white;
-        }
-        
-        .badge-datascience {
-            background-color: var(--datascience-orange);
-            color: white;
-        }
-        
-        .badge-bayesian {
+        .badge-probability {
             background-color: #009688;
             color: white;
         }
         
-        .badge-programming {
+        .badge-inference {
             background-color: #2196F3;
             color: white;
         }
@@ -700,14 +683,6 @@
         .phase7 .phase-title { border-color: var(--phase7); }
         .phase7 .phase-icon { background: linear-gradient(135deg, var(--phase7), #26A69A); }
         .phase7 .topic-card { border-top-color: var(--phase7); }
-        
-        .phase8 .phase-title { border-color: var(--phase8); }
-        .phase8 .phase-icon { background: linear-gradient(135deg, var(--phase8), #546E7A); }
-        .phase8 .topic-card { border-top-color: var(--phase8); }
-        
-        .phase9 .phase-title { border-color: var(--phase9); }
-        .phase9 .phase-icon { background: linear-gradient(135deg, var(--phase9), #EC407A); }
-        .phase9 .topic-card { border-top-color: var(--phase9); }
         
         /* Final Outcome Section */
         .final-outcome {
@@ -904,117 +879,7 @@
             }
         }
         
-        /* Topic Modal */
-        .topic-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .topic-modal.active {
-            display: flex;
-            animation: fadeIn 0.3s;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .modal-content {
-            background-color: white;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-            position: relative;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: #666;
-            cursor: pointer;
-            z-index: 10;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.3s;
-        }
-        
-        .modal-close:hover {
-            background-color: #f0f0f0;
-            color: #333;
-        }
-        
-        /* Floating Action Buttons */
-        .fab-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 100;
-        }
-        
-        .fab {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), #4a69bd);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 8px 20px rgba(12, 36, 97, 0.4);
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-        }
-        
-        .fab:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 25px rgba(12, 36, 97, 0.5);
-        }
-        
-        .fab-tooltip {
-            position: absolute;
-            right: 70px;
-            background: var(--primary);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-        }
-        
-        .fab:hover .fab-tooltip {
-            opacity: 1;
-        }
-        
-        /* Resource Links */
+        /* Resource Buttons */
         .resource-buttons {
             display: flex;
             gap: 15px;
@@ -1044,7 +909,7 @@
         
         /* Print Styles */
         @media print {
-            .sidebar, .fab-container, .topic-links, #start-roadmap {
+            .sidebar, .resource-buttons, #start-roadmap {
                 display: none !important;
             }
             
@@ -1065,8 +930,8 @@
         <!-- Sidebar Navigation -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <h2><i class="fas fa-chart-line"></i> Statistics & Data Science Mastery</h2>
-                <p class="sidebar-tagline">From fundamentals to expert level in 9 comprehensive phases</p>
+                <h2><i class="fas fa-chart-bar"></i> Statistics Mastery Roadmap</h2>
+                <p class="sidebar-tagline">From fundamentals to advanced statistical expertise in 7 comprehensive phases</p>
             </div>
             
             <ul class="phases-nav">
@@ -1091,13 +956,13 @@
                 <li class="phase-link phase-pending" data-phase="phase4">
                     <a href="#phase4">
                         <span class="phase-progress-indicator"></span>
-                        Phase 4: Modern Statistical Learning
+                        Phase 4: Multivariate Analysis
                     </a>
                 </li>
                 <li class="phase-link phase-pending" data-phase="phase5">
                     <a href="#phase5">
                         <span class="phase-progress-indicator"></span>
-                        Phase 5: Applied Implementation
+                        Phase 5: Bayesian Statistics
                     </a>
                 </li>
                 <li class="phase-link phase-pending" data-phase="phase6">
@@ -1109,19 +974,7 @@
                 <li class="phase-link phase-pending" data-phase="phase7">
                     <a href="#phase7">
                         <span class="phase-progress-indicator"></span>
-                        Phase 7: Advanced Machine Learning
-                    </a>
-                </li>
-                <li class="phase-link phase-pending" data-phase="phase8">
-                    <a href="#phase8">
-                        <span class="phase-progress-indicator"></span>
-                        Phase 8: Production & Deployment
-                    </a>
-                </li>
-                <li class="phase-link phase-pending" data-phase="phase9">
-                    <a href="#phase9">
-                        <span class="phase-progress-indicator"></span>
-                        Phase 9: Projects & Career
+                        Phase 7: Advanced Topics & Research
                     </a>
                 </li>
             </ul>
@@ -1136,46 +989,46 @@
                 </div>
                 <div class="progress-stats">
                     <span><i class="fas fa-check-circle"></i> <span id="completed-count">9</span> completed</span>
-                    <span><i class="fas fa-clock"></i> <span id="pending-count">36</span> pending</span>
+                    <span><i class="fas fa-clock"></i> <span id="pending-count">27</span> pending</span>
                 </div>
             </div>
             
             <div class="sidebar-footer">
                 <div class="sidebar-tip">
-                    <i class="fas fa-lightbulb"></i> <strong>Pro Tip:</strong> Complete 2-3 topics weekly to finish in 9-12 months
+                    <i class="fas fa-lightbulb"></i> <strong>Pro Tip:</strong> Complete 2-3 topics weekly to finish in 6-9 months
                 </div>
-                <p><i class="fas fa-clock"></i> <strong>Time Commitment:</strong> 9-12 months</p>
-                <p><i class="fas fa-star"></i> <strong>Topics:</strong> 180+ comprehensive topics</p>
-                <p><i class="fas fa-certificate"></i> <strong>Certifications:</strong> 4+ industry recognized</p>
+                <p><i class="fas fa-clock"></i> <strong>Time Commitment:</strong> 6-9 months</p>
+                <p><i class="fas fa-star"></i> <strong>Topics:</strong> 120+ comprehensive topics</p>
+                <p><i class="fas fa-certificate"></i> <strong>Certifications:</strong> ASA, RSS, or university certificates</p>
             </div>
         </div>
         
         <!-- Main Content -->
         <div class="main-content">
             <div class="header">
-                <h1>Complete Statistics & Data Science Mastery Roadmap</h1>
-                <p>A comprehensive, step-by-step guide from statistical fundamentals to advanced data science applications, machine learning, and real-world implementation.</p>
+                <h1>Complete Statistics Mastery Roadmap</h1>
+                <p>A comprehensive, step-by-step guide from statistical fundamentals to advanced statistical modeling, inference, and research methods.</p>
                 
                 <div class="stats">
                     <div class="stat-item">
-                        <div class="stat-value">9</div>
+                        <div class="stat-value">7</div>
                         <div class="stat-label">Learning Phases</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-value">180+</div>
+                        <div class="stat-value">120+</div>
                         <div class="stat-label">Detailed Topics</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-value">45</div>
+                        <div class="stat-value">21</div>
                         <div class="stat-label">Core Concepts</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-value">4+</div>
+                        <div class="stat-value">3+</div>
                         <div class="stat-label">Certifications</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-value">10+</div>
-                        <div class="stat-label">Real Projects</div>
+                        <div class="stat-value">5+</div>
+                        <div class="stat-label">Research Projects</div>
                     </div>
                 </div>
             </div>
@@ -1190,9 +1043,6 @@
                 </button>
                 <button class="resource-btn" id="btnPrint">
                     <i class="fas fa-print"></i> Print Roadmap
-                </button>
-                <button class="resource-btn" id="btnShare">
-                    <i class="fas fa-share-alt"></i> Share Progress
                 </button>
             </div>
             
@@ -1230,7 +1080,6 @@
                             <div class="topic-links">
                                 <button class="topic-link" onclick="showResource('stats')"><i class="fas fa-book-open"></i> Study Guide</button>
                                 <button class="topic-link" onclick="showResource('video-stats')"><i class="fas fa-play-circle"></i> Video Lectures</button>
-                                <button class="topic-link" onclick="showResource('cheatsheet-stats')"><i class="fas fa-file-alt"></i> Cheatsheet</button>
                             </div>
                             <div class="track-progress">
                                 <label class="checkbox-container">
@@ -1250,7 +1099,7 @@
                             <div class="topic-number">2</div>
                             <div class="topic-status status-foundational">Foundational</div>
                         </div>
-                        <h3>Probability Theory <span class="badge badge-statistics">Statistics</span></h3>
+                        <h3>Probability Theory <span class="badge badge-probability">Probability</span> <span class="badge badge-essential">Essential</span></h3>
                         <ul class="subtopics">
                             <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Basic Probability Rules and Axioms</li>
                             <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Conditional Probability and Bayes' Theorem</li>
@@ -1265,7 +1114,6 @@
                             <div class="topic-links">
                                 <button class="topic-link" onclick="showResource('probability')"><i class="fas fa-book-open"></i> Probability Guide</button>
                                 <button class="topic-link" onclick="showResource('practice-prob')"><i class="fas fa-code"></i> Practice Problems</button>
-                                <button class="topic-link" onclick="showResource('visual-prob')"><i class="fas fa-chart-bar"></i> Visualizations</button>
                             </div>
                             <div class="track-progress">
                                 <label class="checkbox-container">
@@ -1285,7 +1133,7 @@
                             <div class="topic-number">3</div>
                             <div class="topic-status status-foundational">Foundational</div>
                         </div>
-                        <h3>Statistical Inference <span class="badge badge-statistics">Statistics</span> <span class="badge badge-essential">Essential</span></h3>
+                        <h3>Statistical Inference <span class="badge badge-inference">Inference</span> <span class="badge badge-essential">Essential</span></h3>
                         <ul class="subtopics">
                             <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Sampling Distributions and Standard Error</li>
                             <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Central Limit Theorem Applications</li>
@@ -1436,11 +1284,11 @@
             <div id="phase3" class="phase-content phase3">
                 <div class="phase-title">
                     <div class="phase-icon">
-                        <i class="fas fa-brain"></i>
+                        <i class="fas fa-project-diagram"></i>
                     </div>
                     <div class="phase-title-text">
                         <h2>Phase 3: Advanced Modeling Techniques</h2>
-                        <p>Generalized linear models, multivariate analysis, and time series for complex data scenarios</p>
+                        <p>Generalized linear models, time series analysis, and experimental design</p>
                     </div>
                 </div>
                 
@@ -1479,44 +1327,10 @@
                         </div>
                     </div>
                     
-                    <!-- Topic 8: Multivariate Analysis -->
+                    <!-- Topic 8: Time Series Analysis -->
                     <div class="topic-card">
                         <div class="topic-header">
                             <div class="topic-number">8</div>
-                            <div class="topic-status status-advanced">Advanced</div>
-                        </div>
-                        <h3>Multivariate Analysis <span class="badge badge-statistics">Statistics</span></h3>
-                        <ul class="subtopics">
-                            <li><i class="fas fa-check-circle"></i> Principal Component Analysis (PCA)</li>
-                            <li><i class="fas fa-check-circle"></i> Factor Analysis and Interpretation</li>
-                            <li><i class="fas fa-check-circle"></i> Cluster Analysis Methods</li>
-                            <li><i class="fas fa-check-circle"></i> Multidimensional Scaling</li>
-                            <li><i class="fas fa-check-circle"></i> Canonical Correlation Analysis</li>
-                            <li><i class="fas fa-check-circle"></i> Discriminant Analysis</li>
-                            <li><i class="fas fa-check-circle"></i> MANOVA and Repeated Measures</li>
-                            <li><i class="fas fa-check-circle"></i> Multivariate Normal Distribution</li>
-                        </ul>
-                        <div class="topic-footer">
-                            <div class="topic-links">
-                                <button class="topic-link" onclick="showResource('multivariate')"><i class="fas fa-book-open"></i> Multivariate Guide</button>
-                                <button class="topic-link" onclick="showResource('case-multi')"><i class="fas fa-database"></i> Case Studies</button>
-                            </div>
-                            <div class="track-progress">
-                                <label class="checkbox-container">
-                                    <input type="checkbox" class="topic-checkbox" data-phase="phase3" data-topic="8">
-                                    <span>Mark as completed</span>
-                                </label>
-                                <div class="completed-count">
-                                    <i class="fas fa-check"></i> 0/8
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Topic 9: Time Series Analysis -->
-                    <div class="topic-card">
-                        <div class="topic-header">
-                            <div class="topic-number">9</div>
                             <div class="topic-status status-advanced">Advanced</div>
                         </div>
                         <h3>Time Series Analysis <span class="badge badge-statistics">Statistics</span></h3>
@@ -1537,6 +1351,40 @@
                             </div>
                             <div class="track-progress">
                                 <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase3" data-topic="8">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 9: Experimental Design -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">9</div>
+                            <div class="topic-status status-advanced">Advanced</div>
+                        </div>
+                        <h3>Experimental Design <span class="badge badge-statistics">Statistics</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Principles of Experimental Design</li>
+                            <li><i class="fas fa-check-circle"></i> Completely Randomized Designs</li>
+                            <li><i class="fas fa-check-circle"></i> Randomized Block Designs</li>
+                            <li><i class="fas fa-check-circle"></i> Factorial and Fractional Factorial Designs</li>
+                            <li><i class="fas fa-check-circle"></i> Response Surface Methodology</li>
+                            <li><i class="fas fa-check-circle"></i> Split-Plot and Repeated Measures Designs</li>
+                            <li><i class="fas fa-check-circle"></i> Optimal Design Theory</li>
+                            <li><i class="fas fa-check-circle"></i> Design of Computer Experiments</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('experimental')"><i class="fas fa-book-open"></i> Design Guide</button>
+                                <button class="topic-link" onclick="showResource('design-case')"><i class="fas fa-flask"></i> Case Studies</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
                                     <input type="checkbox" class="topic-checkbox" data-phase="phase3" data-topic="9">
                                     <span>Mark as completed</span>
                                 </label>
@@ -1553,36 +1401,36 @@
             <div id="phase4" class="phase-content phase4">
                 <div class="phase-title">
                     <div class="phase-icon">
-                        <i class="fas fa-robot"></i>
+                        <i class="fas fa-chart-pie"></i>
                     </div>
                     <div class="phase-title-text">
-                        <h2>Phase 4: Modern Statistical Learning</h2>
-                        <p>Machine learning fundamentals, Bayesian statistics, and advanced statistical methods</p>
+                        <h2>Phase 4: Multivariate Analysis</h2>
+                        <p>Advanced techniques for analyzing multiple variables simultaneously</p>
                     </div>
                 </div>
                 
                 <div class="topics-container">
-                    <!-- Topic 10: Machine Learning Fundamentals -->
+                    <!-- Topic 10: Principal Component Analysis -->
                     <div class="topic-card">
                         <div class="topic-header">
                             <div class="topic-number">10</div>
-                            <div class="topic-status status-ml">Machine Learning</div>
+                            <div class="topic-status status-advanced">Advanced</div>
                         </div>
-                        <h3>Machine Learning Fundamentals <span class="badge badge-ml">ML</span> <span class="badge badge-datascience">Data Science</span></h3>
+                        <h3>Principal Component Analysis (PCA) <span class="badge badge-statistics">Statistics</span></h3>
                         <ul class="subtopics">
-                            <li><i class="fas fa-check-circle"></i> Bias-Variance Tradeoff</li>
-                            <li><i class="fas fa-check-circle"></i> Cross-Validation Techniques</li>
-                            <li><i class="fas fa-check-circle"></i> Regularization Methods (Ridge, Lasso, Elastic Net)</li>
-                            <li><i class="fas fa-check-circle"></i> Tree-based Methods (Decision Trees, Random Forests)</li>
-                            <li><i class="fas fa-check-circle"></i> Model Evaluation Metrics (Accuracy, Precision, Recall, F1)</li>
-                            <li><i class="fas fa-check-circle"></i> Feature Engineering and Selection</li>
-                            <li><i class="fas fa-check-circle"></i> Ensemble Methods (Bagging, Boosting, Stacking)</li>
-                            <li><i class="fas fa-check-circle"></i> Hyperparameter Tuning</li>
+                            <li><i class="fas fa-check-circle"></i> Dimensionality Reduction Concepts</li>
+                            <li><i class="fas fa-check-circle"></i> Eigenvalues and Eigenvectors in PCA</li>
+                            <li><i class="fas fa-check-circle"></i> Variance Explained and Component Selection</li>
+                            <li><i class="fas fa-check-circle"></i> PCA with Correlation vs. Covariance Matrices</li>
+                            <li><i class="fas fa-check-circle"></i> Interpretation of Principal Components</li>
+                            <li><i class="fas fa-check-circle"></i> Biplots and Visualization Techniques</li>
+                            <li><i class="fas fa-check-circle"></i> Robust PCA Methods</li>
+                            <li><i class="fas fa-check-circle"></i> Applications in Various Fields</li>
                         </ul>
                         <div class="topic-footer">
                             <div class="topic-links">
-                                <button class="topic-link" onclick="showResource('ml-fundamentals')"><i class="fas fa-book-open"></i> ML Guide</button>
-                                <button class="topic-link" onclick="showResource('practice-ml')"><i class="fas fa-code"></i> ML Exercises</button>
+                                <button class="topic-link" onclick="showResource('pca')"><i class="fas fa-book-open"></i> PCA Guide</button>
+                                <button class="topic-link" onclick="showResource('pca-ex')"><i class="fas fa-chart-bar"></i> Examples</button>
                             </div>
                             <div class="track-progress">
                                 <label class="checkbox-container">
@@ -1596,27 +1444,27 @@
                         </div>
                     </div>
                     
-                    <!-- Topic 11: Bayesian Statistics -->
+                    <!-- Topic 11: Factor Analysis -->
                     <div class="topic-card">
                         <div class="topic-header">
                             <div class="topic-number">11</div>
                             <div class="topic-status status-advanced">Advanced</div>
                         </div>
-                        <h3>Bayesian Statistics <span class="badge badge-bayesian">Bayesian</span></h3>
+                        <h3>Factor Analysis <span class="badge badge-statistics">Statistics</span></h3>
                         <ul class="subtopics">
-                            <li><i class="fas fa-check-circle"></i> Bayesian Inference vs. Frequentist</li>
-                            <li><i class="fas fa-check-circle"></i> Prior and Posterior Distributions</li>
-                            <li><i class="fas fa-check-circle"></i> Markov Chain Monte Carlo (MCMC)</li>
-                            <li><i class="fas fa-check-circle"></i> Hierarchical Bayesian Models</li>
-                            <li><i class="fas fa-check-circle"></i> Bayesian Model Comparison</li>
-                            <li><i class="fas fa-check-circle"></i> Bayesian Linear Regression</li>
-                            <li><i class="fas fa-check-circle"></i> Variational Inference</li>
-                            <li><i class="fas fa-check-circle"></i> Bayesian Networks</li>
+                            <li><i class="fas fa-check-circle"></i> Exploratory vs. Confirmatory Factor Analysis</li>
+                            <li><i class="fas fa-check-circle"></i> Factor Extraction Methods</li>
+                            <li><i class="fas fa-check-circle"></i> Factor Rotation Techniques</li>
+                            <li><i class="fas fa-check-circle"></i> Determining Number of Factors</li>
+                            <li><i class="fas fa-check-circle"></i> Factor Loadings Interpretation</li>
+                            <li><i class="fas fa-check-circle"></i> Model Fit Assessment</li>
+                            <li><i class="fas fa-check-circle"></i> Factor Scores Calculation</li>
+                            <li><i class="fas fa-check-circle"></i> Applications in Social Sciences</li>
                         </ul>
                         <div class="topic-footer">
                             <div class="topic-links">
-                                <button class="topic-link" onclick="showResource('bayesian')"><i class="fas fa-book-open"></i> Bayesian Guide</button>
-                                <button class="topic-link" onclick="showResource('mcmc-ex')"><i class="fas fa-project-diagram"></i> MCMC Examples</button>
+                                <button class="topic-link" onclick="showResource('factor')"><i class="fas fa-book-open"></i> Factor Analysis Guide</button>
+                                <button class="topic-link" onclick="showResource('factor-case')"><i class="fas fa-users"></i> Social Science Examples</button>
                             </div>
                             <div class="track-progress">
                                 <label class="checkbox-container">
@@ -1630,27 +1478,27 @@
                         </div>
                     </div>
                     
-                    <!-- Topic 12: Advanced Topics -->
+                    <!-- Topic 12: Cluster Analysis -->
                     <div class="topic-card">
                         <div class="topic-header">
                             <div class="topic-number">12</div>
                             <div class="topic-status status-advanced">Advanced</div>
                         </div>
-                        <h3>Advanced Statistical Topics <span class="badge badge-statistics">Statistics</span></h3>
+                        <h3>Cluster Analysis <span class="badge badge-statistics">Statistics</span></h3>
                         <ul class="subtopics">
-                            <li><i class="fas fa-check-circle"></i> Survival Analysis and Cox Regression</li>
-                            <li><i class="fas fa-check-circle"></i> Longitudinal Data Analysis</li>
-                            <li><i class="fas fa-check-circle"></i> Spatial Statistics and Geostatistics</li>
-                            <li><i class="fas fa-check-circle"></i> Causal Inference Methods</li>
-                            <li><i class="fas fa-check-circle"></i> High-Dimensional Statistics</li>
-                            <li><i class="fas fa-check-circle"></i> Experimental Design Principles</li>
-                            <li><i class="fas fa-check-circle"></i> Missing Data Methods (Multiple Imputation)</li>
-                            <li><i class="fas fa-check-circle"></i> Robust Statistics</li>
+                            <li><i class="fas fa-check-circle"></i> Distance and Similarity Measures</li>
+                            <li><i class="fas fa-check-circle"></i> Hierarchical Clustering Methods</li>
+                            <li><i class="fas fa-check-circle"></i> K-means and K-medoids Clustering</li>
+                            <li><i class="fas fa-check-circle"></i> Model-based Clustering</li>
+                            <li><i class="fas fa-check-circle"></i> Determining Number of Clusters</li>
+                            <li><i class="fas fa-check-circle"></i> Cluster Validation Techniques</li>
+                            <li><i class="fas fa-check-circle"></i> Density-based Clustering (DBSCAN)</li>
+                            <li><i class="fas fa-check-circle"></i> Applications in Market Segmentation</li>
                         </ul>
                         <div class="topic-footer">
                             <div class="topic-links">
-                                <button class="topic-link" onclick="showResource('advanced-stats')"><i class="fas fa-book-open"></i> Advanced Guide</button>
-                                <button class="topic-link" onclick="showResource('specialized')"><i class="fas fa-graduation-cap"></i> Specialized Topics</button>
+                                <button class="topic-link" onclick="showResource('cluster')"><i class="fas fa-book-open"></i> Clustering Guide</button>
+                                <button class="topic-link" onclick="showResource('cluster-ex')"><i class="fas fa-sitemap"></i> Examples</button>
                             </div>
                             <div class="track-progress">
                                 <label class="checkbox-container">
@@ -1670,36 +1518,36 @@
             <div id="phase5" class="phase-content phase5">
                 <div class="phase-title">
                     <div class="phase-icon">
-                        <i class="fas fa-laptop-code"></i>
+                        <i class="fas fa-brain"></i>
                     </div>
                     <div class="phase-title-text">
-                        <h2>Phase 5: Applied Implementation</h2>
-                        <p>Statistical programming, real-world applications, and continued learning strategies</p>
+                        <h2>Phase 5: Bayesian Statistics</h2>
+                        <p>Bayesian inference, hierarchical models, and modern computational methods</p>
                     </div>
                 </div>
                 
                 <div class="topics-container">
-                    <!-- Topic 13: Statistical Programming -->
+                    <!-- Topic 13: Bayesian Inference -->
                     <div class="topic-card">
                         <div class="topic-header">
                             <div class="topic-number">13</div>
-                            <div class="topic-status status-applied">Applied</div>
+                            <div class="topic-status status-advanced">Advanced</div>
                         </div>
-                        <h3>Statistical Programming <span class="badge badge-programming">Programming</span></h3>
+                        <h3>Bayesian Inference <span class="badge badge-probability">Probability</span></h3>
                         <ul class="subtopics">
-                            <li><i class="fas fa-check-circle"></i> R for Statistical Computing</li>
-                            <li><i class="fas fa-check-circle"></i> Python with pandas, numpy, scipy</li>
-                            <li><i class="fas fa-check-circle"></i> Data Visualization with ggplot2 and matplotlib</li>
-                            <li><i class="fas fa-check-circle"></i> Reproducible Research with RMarkdown/Jupyter</li>
-                            <li><i class="fas fa-check-circle"></i> Statistical Software (SPSS, SAS, Stata)</li>
-                            <li><i class="fas fa-check-circle"></i> Version Control with Git</li>
-                            <li><i class="fas fa-check-circle"></i> Database Integration (SQL, NoSQL)</li>
-                            <li><i class="fas fa-check-circle"></i> Parallel Computing for Statistics</li>
+                            <li><i class="fas fa-check-circle"></i> Bayesian vs. Frequentist Paradigms</li>
+                            <li><i class="fas fa-check-circle"></i> Prior and Posterior Distributions</li>
+                            <li><i class="fas fa-check-circle"></i> Conjugate Priors</li>
+                            <li><i class="fas fa-check-circle"></i> Bayesian Point Estimation</li>
+                            <li><i class="fas fa-check-circle"></i> Credible Intervals</li>
+                            <li><i class="fas fa-check-circle"></i> Bayesian Hypothesis Testing</li>
+                            <li><i class="fas fa-check-circle"></i> Bayes Factors</li>
+                            <li><i class="fas fa-check-circle"></i> Predictive Distributions</li>
                         </ul>
                         <div class="topic-footer">
                             <div class="topic-links">
-                                <button class="topic-link" onclick="showResource('programming')"><i class="fas fa-book-open"></i> Programming Guide</button>
-                                <button class="topic-link" onclick="showResource('code-examples')"><i class="fas fa-code"></i> Code Examples</button>
+                                <button class="topic-link" onclick="showResource('bayesian')"><i class="fas fa-book-open"></i> Bayesian Guide</button>
+                                <button class="topic-link" onclick="showResource('bayesian-ex')"><i class="fas fa-calculator"></i> Examples</button>
                             </div>
                             <div class="track-progress">
                                 <label class="checkbox-container">
@@ -1713,27 +1561,27 @@
                         </div>
                     </div>
                     
-                    <!-- Topic 14: Real-World Applications -->
+                    <!-- Topic 14: Markov Chain Monte Carlo -->
                     <div class="topic-card">
                         <div class="topic-header">
                             <div class="topic-number">14</div>
-                            <div class="topic-status status-applied">Applied</div>
+                            <div class="topic-status status-advanced">Advanced</div>
                         </div>
-                        <h3>Real-World Applications <span class="badge badge-datascience">Data Science</span></h3>
+                        <h3>Markov Chain Monte Carlo (MCMC) <span class="badge badge-probability">Probability</span></h3>
                         <ul class="subtopics">
-                            <li><i class="fas fa-check-circle"></i> Experimental Design and A/B Testing</li>
-                            <li><i class="fas fa-check-circle"></i> Statistical Consulting Principles</li>
-                            <li><i class="fas fa-check-circle"></i> Communicating Statistical Results</li>
-                            <li><i class="fas fa-check-circle"></i> Ethical Considerations in Statistics</li>
-                            <li><i class="fas fa-check-circle"></i> Case Studies Across Industries</li>
-                            <li><i class="fas fa-check-circle"></i> Business Intelligence Applications</li>
-                            <li><i class="fas fa-check-circle"></i> Healthcare and Biostatistics</li>
-                            <li><i class="fas fa-check-circle"></i> Financial and Econometric Applications</li>
+                            <li><i class="fas fa-check-circle"></i> Monte Carlo Integration</li>
+                            <li><i class="fas fa-check-circle"></i> Markov Chains Theory</li>
+                            <li><i class="fas fa-check-circle"></i> Metropolis-Hastings Algorithm</li>
+                            <li><i class="fas fa-check-circle"></i> Gibbs Sampling</li>
+                            <li><i class="fas fa-check-circle"></i> Convergence Diagnostics</li>
+                            <li><i class="fas fa-check-circle"></i> Hamiltonian Monte Carlo</li>
+                            <li><i class="fas fa-check-circle"></i> Slice Sampling</li>
+                            <li><i class="fas fa-check-circle"></i> Practical Implementation Issues</li>
                         </ul>
                         <div class="topic-footer">
                             <div class="topic-links">
-                                <button class="topic-link" onclick="showResource('applications')"><i class="fas fa-book-open"></i> Applications Guide</button>
-                                <button class="topic-link" onclick="showResource('case-studies')"><i class="fas fa-briefcase"></i> Case Studies</button>
+                                <button class="topic-link" onclick="showResource('mcmc')"><i class="fas fa-book-open"></i> MCMC Guide</button>
+                                <button class="topic-link" onclick="showResource('mcmc-ex')"><i class="fas fa-project-diagram"></i> Examples</button>
                             </div>
                             <div class="track-progress">
                                 <label class="checkbox-container">
@@ -1747,27 +1595,27 @@
                         </div>
                     </div>
                     
-                    <!-- Topic 15: Continued Learning -->
+                    <!-- Topic 15: Hierarchical Bayesian Models -->
                     <div class="topic-card">
                         <div class="topic-header">
                             <div class="topic-number">15</div>
-                            <div class="topic-status status-applied">Applied</div>
+                            <div class="topic-status status-advanced">Advanced</div>
                         </div>
-                        <h3>Continued Learning & Development <span class="badge badge-essential">Essential</span></h3>
+                        <h3>Hierarchical Bayesian Models <span class="badge badge-statistics">Statistics</span></h3>
                         <ul class="subtopics">
-                            <li><i class="fas fa-check-circle"></i> Specialized Journals and Publications</li>
-                            <li><i class="fas fa-check-circle"></i> Online Courses and Certifications</li>
-                            <li><i class="fas fa-check-circle"></i> Statistical Conferences and Workshops</li>
-                            <li><i class="fas fa-check-circle"></i> Research Participation Opportunities</li>
-                            <li><i class="fas fa-check-circle"></i> Teaching and Mentorship</li>
-                            <li><i class="fas fa-check-circle"></i> Professional Societies (ASA, RSS)</li>
-                            <li><i class="fas fa-check-circle"></i> Building a Professional Portfolio</li>
-                            <li><i class="fas fa-check-circle"></i> Career Development Strategies</li>
+                            <li><i class="fas fa-check-circle"></i> Multilevel Modeling Concepts</li>
+                            <li><i class="fas fa-check-circle"></i> Random Effects Models</li>
+                            <li><i class="fas fa-check-circle"></i> Exchangeability and Hierarchical Priors</li>
+                            <li><i class="fas fa-check-circle"></i> Shrinkage and Partial Pooling</li>
+                            <li><i class="fas fa-check-circle"></i> Bayesian Linear Mixed Models</li>
+                            <li><i class="fas fa-check-circle"></i> Bayesian GLMMs</li>
+                            <li><i class="fas fa-check-circle"></i> Computational Strategies</li>
+                            <li><i class="fas fa-check-circle"></i> Applications in Longitudinal Data</li>
                         </ul>
                         <div class="topic-footer">
                             <div class="topic-links">
-                                <button class="topic-link" onclick="showResource('learning')"><i class="fas fa-book-open"></i> Learning Guide</button>
-                                <button class="topic-link" onclick="showResource('career')"><i class="fas fa-graduation-cap"></i> Career Resources</button>
+                                <button class="topic-link" onclick="showResource('hierarchical')"><i class="fas fa-book-open"></i> Hierarchical Models Guide</button>
+                                <button class="topic-link" onclick="showResource('hierarchical-ex')"><i class="fas fa-layer-group"></i> Examples</button>
                             </div>
                             <div class="track-progress">
                                 <label class="checkbox-container">
@@ -1783,87 +1631,295 @@
                 </div>
             </div>
             
-            <!-- Additional phases would continue here with topics 16-45 -->
+            <!-- Phase 6 Content -->
+            <div id="phase6" class="phase-content phase6">
+                <div class="phase-title">
+                    <div class="phase-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="phase-title-text">
+                        <h2>Phase 6: Specialized Applications</h2>
+                        <p>Specialized statistical methods for specific domains and applications</p>
+                    </div>
+                </div>
+                
+                <div class="topics-container">
+                    <!-- Topic 16: Survival Analysis -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">16</div>
+                            <div class="topic-status status-applied">Applied</div>
+                        </div>
+                        <h3>Survival Analysis <span class="badge badge-statistics">Statistics</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Censoring and Truncation</li>
+                            <li><i class="fas fa-check-circle"></i> Survival and Hazard Functions</li>
+                            <li><i class="fas fa-check-circle"></i> Kaplan-Meier Estimator</li>
+                            <li><i class="fas fa-check-circle"></i> Log-rank Tests</li>
+                            <li><i class="fas fa-check-circle"></i> Cox Proportional Hazards Model</li>
+                            <li><i class="fas fa-check-circle"></i> Parametric Survival Models</li>
+                            <li><i class="fas fa-check-circle"></i> Time-dependent Covariates</li>
+                            <li><i class="fas fa-check-circle"></i> Competing Risks Analysis</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('survival')"><i class="fas fa-book-open"></i> Survival Analysis Guide</button>
+                                <button class="topic-link" onclick="showResource('medical-ex')"><i class="fas fa-heartbeat"></i> Medical Examples</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase6" data-topic="16">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 17: Spatial Statistics -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">17</div>
+                            <div class="topic-status status-applied">Applied</div>
+                        </div>
+                        <h3>Spatial Statistics <span class="badge badge-statistics">Statistics</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Spatial Data Types</li>
+                            <li><i class="fas fa-check-circle"></i> Spatial Autocorrelation Measures</li>
+                            <li><i class="fas fa-check-circle"></i> Geostatistical Models</li>
+                            <li><i class="fas fa-check-circle"></i> Kriging and Variograms</li>
+                            <li><i class="fas fa-check-circle"></i> Point Process Models</li>
+                            <li><i class="fas fa-check-circle"></i> Markov Random Fields</li>
+                            <li><i class="fas fa-check-circle"></i> Bayesian Spatial Models</li>
+                            <li><i class="fas fa-check-circle"></i> Applications in Ecology and Geography</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('spatial')"><i class="fas fa-book-open"></i> Spatial Statistics Guide</button>
+                                <button class="topic-link" onclick="showResource('spatial-ex')"><i class="fas fa-map-marked-alt"></i> Mapping Examples</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase6" data-topic="17">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 18: Causal Inference -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">18</div>
+                            <div class="topic-status status-applied">Applied</div>
+                        </div>
+                        <h3>Causal Inference <span class="badge badge-statistics">Statistics</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Potential Outcomes Framework</li>
+                            <li><i class="fas fa-check-circle"></i> Randomized Experiments</li>
+                            <li><i class="fas fa-check-circle"></i> Observational Studies</li>
+                            <li><i class="fas fa-check-circle"></i> Propensity Score Methods</li>
+                            <li><i class="fas fa-check-circle"></i> Instrumental Variables</li>
+                            <li><i class="fas fa-check-circle"></i> Difference-in-Differences</li>
+                            <li><i class="fas fa-check-circle"></i> Regression Discontinuity Designs</li>
+                            <li><i class="fas fa-check-circle"></i> Causal Diagrams and DAGs</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('causal')"><i class="fas fa-book-open"></i> Causal Inference Guide</button>
+                                <button class="topic-link" onclick="showResource('causal-ex')"><i class="fas fa-balance-scale"></i> Policy Evaluation Examples</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase6" data-topic="18">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 7 Content -->
+            <div id="phase7" class="phase-content phase7">
+                <div class="phase-title">
+                    <div class="phase-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="phase-title-text">
+                        <h2>Phase 7: Advanced Topics & Research</h2>
+                        <p>Cutting-edge statistical research methods and professional development</p>
+                    </div>
+                </div>
+                
+                <div class="topics-container">
+                    <!-- Topic 19: High-Dimensional Statistics -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">19</div>
+                            <div class="topic-status status-advanced">Advanced</div>
+                        </div>
+                        <h3>High-Dimensional Statistics <span class="badge badge-statistics">Statistics</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Curse of Dimensionality</li>
+                            <li><i class="fas fa-check-circle"></i> Sparse Statistical Models</li>
+                            <li><i class="fas fa-check-circle"></i> Regularization Paths</li>
+                            <li><i class="fas fa-check-circle"></i> False Discovery Rate Control</li>
+                            <li><i class="fas fa-check-circle"></i> Multiple Testing Corrections</li>
+                            <li><i class="fas fa-check-circle"></i> Graphical Models</li>
+                            <li><i class="fas fa-check-circle"></i> High-Dimensional Inference</li>
+                            <li><i class="fas fa-check-circle"></i> Applications in Genomics</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('highdim')"><i class="fas fa-book-open"></i> High-Dim Guide</button>
+                                <button class="topic-link" onclick="showResource('genomics-ex')"><i class="fas fa-dna"></i> Genomics Examples</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase7" data-topic="19">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 20: Robust Statistics -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">20</div>
+                            <div class="topic-status status-advanced">Advanced</div>
+                        </div>
+                        <h3>Robust Statistics <span class="badge badge-statistics">Statistics</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Influence Functions</li>
+                            <li><i class="fas fa-check-circle"></i> Breakdown Points</li>
+                            <li><i class="fas fa-check-circle"></i> M-estimators</li>
+                            <li><i class="fas fa-check-circle"></i> L-estimators and R-estimators</li>
+                            <li><i class="fas fa-check-circle"></i> Robust Regression Methods</li>
+                            <li><i class="fas fa-check-circle"></i> Robust Covariance Estimation</li>
+                            <li><i class="fas fa-check-circle"></i> Outlier Detection</li>
+                            <li><i class="fas fa-check-circle"></i> Applications with Contaminated Data</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('robust')"><i class="fas fa-book-open"></i> Robust Statistics Guide</button>
+                                <button class="topic-link" onclick="showResource('robust-ex')"><i class="fas fa-shield-alt"></i> Examples</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase7" data-topic="20">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic 21: Research Methods -->
+                    <div class="topic-card">
+                        <div class="topic-header">
+                            <div class="topic-number">21</div>
+                            <div class="topic-status status-applied">Applied</div>
+                        </div>
+                        <h3>Statistical Research Methods <span class="badge badge-essential">Essential</span></h3>
+                        <ul class="subtopics">
+                            <li><i class="fas fa-check-circle"></i> Research Design and Planning</li>
+                            <li><i class="fas fa-check-circle"></i> Statistical Consulting Principles</li>
+                            <li><i class="fas fa-check-circle"></i> Ethical Considerations in Statistics</li>
+                            <li><i class="fas fa-check-circle"></i> Reproducible Research Practices</li>
+                            <li><i class="fas fa-check-circle"></i> Writing Statistical Reports</li>
+                            <li><i class="fas fa-check-circle"></i> Peer Review Process</li>
+                            <li><i class="fas fa-check-circle"></i> Statistical Software Mastery</li>
+                            <li><i class="fas fa-check-circle"></i> Career Development in Statistics</li>
+                        </ul>
+                        <div class="topic-footer">
+                            <div class="topic-links">
+                                <button class="topic-link" onclick="showResource('research')"><i class="fas fa-book-open"></i> Research Guide</button>
+                                <button class="topic-link" onclick="showResource('career')"><i class="fas fa-graduation-cap"></i> Career Resources</button>
+                            </div>
+                            <div class="track-progress">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="topic-checkbox" data-phase="phase7" data-topic="21">
+                                    <span>Mark as completed</span>
+                                </label>
+                                <div class="completed-count">
+                                    <i class="fas fa-check"></i> 0/8
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             <!-- Final Outcome Section -->
             <div class="final-outcome">
-                <h2><i class="fas fa-crown"></i> Final Outcome: Statistics & Data Science Master</h2>
-                <p>After completing all 9 phases of this comprehensive roadmap, you will be a certified Statistics & Data Science expert ready for roles in data analysis, machine learning, research, and advanced analytics.</p>
+                <h2><i class="fas fa-crown"></i> Final Outcome: Statistics Master</h2>
+                <p>After completing all 7 phases of this comprehensive statistics roadmap, you will be a certified Statistics expert ready for roles in research, analytics, consulting, and academia.</p>
                 
                 <div class="outcome-grid">
                     <div class="outcome-card">
                         <h3><i class="fas fa-check-circle"></i> You Will Master</h3>
                         <ul>
                             <li>Statistical Theory & Inference</li>
-                            <li>Machine Learning Algorithms</li>
-                            <li>Advanced Modeling Techniques</li>
+                            <li>Probability Distributions</li>
+                            <li>Regression & ANOVA</li>
+                            <li>Multivariate Methods</li>
                             <li>Bayesian Statistics</li>
                             <li>Time Series Analysis</li>
-                            <li>Multivariate Methods</li>
                             <li>Experimental Design</li>
-                            <li>Statistical Programming</li>
+                            <li>Statistical Computing</li>
                         </ul>
                     </div>
                     
                     <div class="outcome-card">
                         <h3><i class="fas fa-briefcase"></i> Career Ready For</h3>
                         <ul>
-                            <li>Data Scientist</li>
+                            <li>Statistician</li>
                             <li>Statistical Analyst</li>
-                            <li>Machine Learning Engineer</li>
-                            <li>Quantitative Analyst</li>
                             <li>Research Scientist</li>
                             <li>Biostatistician</li>
-                            <li>Data Science Consultant</li>
-                            <li>Analytics Manager</li>
+                            <li>Quantitative Analyst</li>
+                            <li>Statistical Consultant</li>
+                            <li>Data Analyst</li>
+                            <li>Academic Researcher</li>
                         </ul>
                     </div>
                     
                     <div class="outcome-card">
-                        <h3><i class="fas fa-project-diagram"></i> Project Portfolio</h3>
+                        <h3><i class="fas fa-project-diagram"></i> Research Portfolio</h3>
                         <ul>
-                            <li>Predictive Modeling Projects</li>
                             <li>Statistical Research Studies</li>
-                            <li>A/B Testing Frameworks</li>
+                            <li>Experimental Design Projects</li>
+                            <li>Bayesian Analysis Projects</li>
                             <li>Time Series Forecasting</li>
-                            <li>Machine Learning Pipelines</li>
-                            <li>Data Visualization Dashboards</li>
+                            <li>Multivariate Analysis Projects</li>
                             <li>Statistical Consulting Projects</li>
                             <li>Research Publications</li>
+                            <li>Conference Presentations</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="start-button">
                     <button id="start-roadmap">
-                        <i class="fas fa-play-circle"></i> Start Your Statistics & Data Science Journey
+                        <i class="fas fa-play-circle"></i> Start Your Statistics Mastery Journey
                     </button>
                 </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- Floating Action Buttons -->
-    <div class="fab-container">
-        <div class="fab" id="fab-progress">
-            <i class="fas fa-chart-line"></i>
-            <span class="fab-tooltip">View Progress</span>
-        </div>
-        <div class="fab" id="fab-notes">
-            <i class="fas fa-sticky-note"></i>
-            <span class="fab-tooltip">Take Notes</span>
-        </div>
-        <div class="fab" id="fab-resources">
-            <i class="fas fa-book"></i>
-            <span class="fab-tooltip">Resources</span>
-        </div>
-    </div>
-    
-    <!-- Topic Modal -->
-    <div class="topic-modal" id="topicModal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">&times;</button>
-            <div id="modalContent"></div>
         </div>
     </div>
 
@@ -1909,11 +1965,9 @@
                 'phase2': 40,
                 'phase3': 60,
                 'phase4': 80,
-                'phase5': 100,
-                'phase6': 100,
-                'phase7': 100,
-                'phase8': 100,
-                'phase9': 100
+                'phase5': 90,
+                'phase6': 95,
+                'phase7': 100
             };
             
             const progress = phaseProgress[phase] || 20;
@@ -1952,12 +2006,12 @@
                 title: '📊 Start Your Statistics Journey!',
                 html: `
                     <div style="text-align: left; padding: 20px;">
-                        <p><strong>Welcome to your Statistics & Data Science mastery journey!</strong></p>
+                        <p><strong>Welcome to your Statistics mastery journey!</strong></p>
                         <p>Begin with <strong>Phase 1: Foundational Statistics</strong>.</p>
                         <p>Track your progress by marking topics as completed.</p>
                         <p><strong>Recommended Pace:</strong> 2-3 topics per week</p>
-                        <p><strong>Estimated Completion:</strong> 9-12 months</p>
-                        <p><strong>Certifications Available:</strong> ASA, RSS, Coursera, edX</p>
+                        <p><strong>Estimated Completion:</strong> 6-9 months</p>
+                        <p><strong>Certifications Available:</strong> ASA, RSS, University Certificates</p>
                     </div>
                 `,
                 icon: 'info',
@@ -2084,106 +2138,6 @@
             updateProgressStats();
         }
         
-        // FAB functionality
-        document.getElementById('fab-progress').addEventListener('click', function() {
-            const completed = document.querySelectorAll('.topic-checkbox:checked').length;
-            const total = document.querySelectorAll('.topic-checkbox').length;
-            const percentage = Math.round((completed / total) * 100);
-            
-            Swal.fire({
-                title: '📊 Your Learning Progress',
-                html: `
-                    <div style="text-align: center; padding: 20px;">
-                        <div style="font-size: 3rem; color: #0c2461; margin-bottom: 10px;">${percentage}%</div>
-                        <div style="margin-bottom: 20px;">
-                            <div style="background: #f0f0f0; height: 10px; border-radius: 5px; overflow: hidden;">
-                                <div style="background: linear-gradient(90deg, #4CAF50, #8BC34A); height: 100%; width: ${percentage}%; transition: width 1s;"></div>
-                            </div>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px;">
-                            <div style="background: #E8F5E9; padding: 15px; border-radius: 10px;">
-                                <div style="font-size: 2rem; color: #4CAF50; font-weight: bold;">${completed}</div>
-                                <div style="color: #666; font-size: 0.9rem;">Completed</div>
-                            </div>
-                            <div style="background: #FFF3E0; padding: 15px; border-radius: 10px;">
-                                <div style="font-size: 2rem; color: #F57C00; font-weight: bold;">${total - completed}</div>
-                                <div style="color: #666; font-size: 0.9rem;">Pending</div>
-                            </div>
-                        </div>
-                        <div style="margin-top: 20px; font-size: 0.9rem; color: #666;">
-                            <i class="fas fa-clock"></i> Estimated time to completion: ${Math.round((total - completed) / 3)} weeks
-                        </div>
-                    </div>
-                `,
-                showConfirmButton: false,
-                showCloseButton: true,
-                width: 500
-            });
-        });
-        
-        document.getElementById('fab-notes').addEventListener('click', function() {
-            Swal.fire({
-                title: '📝 Take Notes',
-                input: 'textarea',
-                inputLabel: 'Add notes for this topic',
-                inputPlaceholder: 'Type your notes here...',
-                showCancelButton: true,
-                confirmButtonText: 'Save Note',
-                confirmButtonColor: '#0c2461',
-                preConfirm: (notes) => {
-                    if (!notes) {
-                        Swal.showValidationMessage('Please enter some notes');
-                    }
-                    return notes;
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        title: 'Note Saved!',
-                        icon: 'success',
-                        timer: 2000,
-                        showConfirmButton: false
-                    });
-                }
-            });
-        });
-        
-        document.getElementById('fab-resources').addEventListener('click', function() {
-            Swal.fire({
-                title: '📚 Learning Resources',
-                html: `
-                    <div style="text-align: left; padding: 20px;">
-                        <h4>Recommended Textbooks:</h4>
-                        <ul style="padding-left: 20px;">
-                            <li>"All of Statistics" by Larry Wasserman</li>
-                            <li>"Elements of Statistical Learning" by Hastie, Tibshirani & Friedman</li>
-                            <li>"Statistical Inference" by Casella & Berger</li>
-                            <li>"Bayesian Data Analysis" by Gelman et al.</li>
-                        </ul>
-                        
-                        <h4 style="margin-top: 20px;">Online Courses:</h4>
-                        <ul style="padding-left: 20px;">
-                            <li>Statistics with R Specialization (Coursera)</li>
-                            <li>MIT OpenCourseWare: Statistics & Probability</li>
-                            <li>edX: Data Science & Statistics</li>
-                            <li>Kaggle Learn: Statistics & ML</li>
-                        </ul>
-                        
-                        <h4 style="margin-top: 20px;">Practice Platforms:</h4>
-                        <ul style="padding-left: 20px;">
-                            <li>Kaggle Competitions</li>
-                            <li>DataCamp Projects</li>
-                            <li>StatTrek Tutorials</li>
-                            <li>Project Euler (Math/Stats Problems)</li>
-                        </ul>
-                    </div>
-                `,
-                width: 600,
-                confirmButtonText: 'Got it!',
-                confirmButtonColor: '#0c2461'
-            });
-        });
-        
         // Show resource modal
         function showResource(type) {
             const resources = {
@@ -2192,7 +2146,7 @@
                 'inference': 'Statistical Inference Materials: Point estimation, confidence intervals, hypothesis testing with real-world applications.',
                 'regression': 'Regression Analysis Resources: Linear regression, model diagnostics, selection techniques, and interpretation guides.',
                 'anova': 'ANOVA Materials: Experimental design, variance analysis, post-hoc testing, and practical implementation guides.',
-                'ml-fundamentals': 'Machine Learning Fundamentals: Bias-variance tradeoff, cross-validation, regularization methods, and evaluation metrics.'
+                'bayesian': 'Bayesian Statistics Resources: Comprehensive guide to Bayesian inference, MCMC methods, and hierarchical models.'
             };
             
             Swal.fire({
@@ -2260,61 +2214,10 @@
             window.print();
         });
         
-        document.getElementById('btnShare').addEventListener('click', function() {
-            const completed = document.querySelectorAll('.topic-checkbox:checked').length;
-            const total = document.querySelectorAll('.topic-checkbox').length;
-            const percentage = Math.round((completed / total) * 100);
-            
-            Swal.fire({
-                title: 'Share Your Progress',
-                html: `
-                    <div style="text-align: center; padding: 20px;">
-                        <p>Share your statistics learning progress with others!</p>
-                        <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; margin: 20px 0;">
-                            <h3>My Statistics Mastery Progress</h3>
-                            <p>${completed} of ${total} topics completed (${percentage}%)</p>
-                            <div style="background: #ddd; height: 10px; border-radius: 5px; overflow: hidden;">
-                                <div style="background: #4a69bd; height: 100%; width: ${percentage}%;"></div>
-                            </div>
-                        </div>
-                        <p>Copy the text above or share a screenshot!</p>
-                    </div>
-                `,
-                width: 500,
-                confirmButtonText: 'Copy to Clipboard',
-                confirmButtonColor: '#0c2461',
-                showCancelButton: true,
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    const progressText = `My Statistics Mastery Progress: ${completed} of ${total} topics completed (${percentage}%)`;
-                    navigator.clipboard.writeText(progressText).then(() => {
-                        Swal.fire({
-                            title: 'Copied!',
-                            text: 'Progress text copied to clipboard.',
-                            icon: 'success',
-                            timer: 2000,
-                            showConfirmButton: false
-                        });
-                    });
-                }
-            });
-        });
-        
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             // Load progress
             loadProgress();
-            
-            // Add CSS for animations
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideOut {
-                    from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(100%); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
             
             // Simulate initial progress for demo
             setTimeout(() => {
