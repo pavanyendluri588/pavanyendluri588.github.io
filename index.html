@@ -478,7 +478,7 @@ footer{border-top:1px solid var(--border); padding:48px 0 32px;}
       <p class="hero-tagline">I architect autonomous AI agents and RAG pipelines that automate real enterprise workflows — designed to plan, reason, and act with minimal human hand-holding, and to hold up in production.</p>
       <div class="hero-cta-row">
         <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-diagram-project"></i> View Work</a>
-        <a href="Pavan_Yendluri_Resume.pdf" download class="btn btn-ghost"><i class="fa-solid fa-arrow-down"></i> Download Resume</a>
+        <a href="https://drive.google.com/file/d/1cCJoQpcfxtuuoPqDDPgce7431o4RFQfN/view?usp=sharing" download class="btn btn-ghost"><i class="fa-solid fa-arrow-down"></i> Download Resume</a>
       </div>
       <div class="hero-meta">
         <div class="hero-meta-item"><i class="fa-solid fa-location-dot"></i> Bengaluru, India</div>
@@ -921,36 +921,38 @@ footer{border-top:1px solid var(--border); padding:48px 0 32px;}
           <div class="contact-icon"><i class="fa-brands fa-github"></i></div>
           <div><h4>GitHub</h4><span>@pavanyendluri588</span></div>
         </a>
-        <a href="#" target="_blank" rel="noopener" class="contact-link-item">
+        <a href="https://leetcode.com/u/pavanyendluri588/" target="_blank" rel="noopener" class="contact-link-item">
           <div class="contact-icon"><i class="fa-solid fa-code"></i></div>
           <div><h4>LeetCode</h4><span>View profile</span></div>
         </a>
       </div>
       <div class="reveal">
-        <form id="contact-form" novalidate>
+        <!-- ================= FORM START (INTEGRATED WITH FORMSPREE) ================= -->
+        <form id="contact-form" action="https://formspree.io/f/xeebryqo" method="POST" novalidate>
           <div class="form-group" id="fg-name">
             <label for="c-name">Name</label>
-            <input type="text" id="c-name" placeholder="Your full name">
+            <input type="text" id="c-name" name="name" placeholder="Your full name" required>
             <div class="form-error">Please enter your name.</div>
           </div>
           <div class="form-group" id="fg-email">
             <label for="c-email">Email</label>
-            <input type="email" id="c-email" placeholder="you@company.com">
+            <input type="email" id="c-email" name="email" placeholder="you@company.com" required>
             <div class="form-error">Please enter a valid email address.</div>
           </div>
           <div class="form-group" id="fg-subject">
             <label for="c-subject">Subject</label>
-            <input type="text" id="c-subject" placeholder="e.g. AI Engineer role at...">
+            <input type="text" id="c-subject" name="subject" placeholder="e.g. AI Engineer role at..." required>
             <div class="form-error">Please enter a subject.</div>
           </div>
           <div class="form-group" id="fg-message">
             <label for="c-message">Message</label>
-            <textarea id="c-message" placeholder="Tell me about the role or project..."></textarea>
+            <textarea id="c-message" name="message" placeholder="Tell me about the role or project..." required></textarea>
             <div class="form-error">Message should be at least 10 characters.</div>
           </div>
           <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
-          <div id="form-success"><i class="fa-solid fa-circle-check"></i> Message ready — thanks! I'll get back to you within a day.</div>
+          <div id="form-success"><i class="fa-solid fa-circle-check"></i> Message sent — thanks! I'll get back to you within a day.</div>
         </form>
+        <!-- ================= FORM END ================= -->
       </div>
     </div>
   </div>
@@ -1138,11 +1140,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ---------- CONTACT FORM VALIDATION ---------- */
+  /* ---------- CONTACT FORM ---------- */
   const form = document.getElementById('contact-form');
   const successBox = document.getElementById('form-success');
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    // 1. Client-side validation (same as before)
     let valid = true;
     const name = document.getElementById('c-name');
     const email = document.getElementById('c-email');
@@ -1159,15 +1164,34 @@ document.addEventListener('DOMContentLoaded', () => {
     check(subject, subject.value.trim().length > 1);
     check(message, message.value.trim().length >= 10);
 
-    if(valid){
-      successBox.classList.add('show');
-      form.reset();
-      setTimeout(() => successBox.classList.remove('show'), 6000);
-    } else {
+    if (!valid) {
       successBox.classList.remove('show');
+      return;
     }
-  });
 
+    // 2. Send data to Formspree
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        successBox.classList.add('show');
+        form.reset();
+        // Remove validation error states after reset
+        document.querySelectorAll('.form-group').forEach(g => g.classList.remove('invalid'));
+        setTimeout(() => successBox.classList.remove('show'), 6000);
+      } else {
+        alert('Something went wrong. Please try again later.');
+      }
+    })
+    .catch(() => {
+      alert('Network error. Please check your internet connection.');
+    });
+  });
 });
 </script>
 </body>
